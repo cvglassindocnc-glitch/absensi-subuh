@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+<meta name="theme-color" content="#0a5c44"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<title>Absensi Subuh — Pesantren</title>
+<link rel="manifest" href="manifest.json"/>
+<style>
+:root{
+  --hijau:#0a5c44;--hijau2:#1D9E75;--hijau-muda:#E1F5EE;
+  --merah:#c0392b;--merah-muda:#FCEBEB;
+  --biru:#1a6fa8;--biru-muda:#E6F1FB;
+  --kuning:#b07800;--kuning-muda:#FAEEDA;
+  --abu:#5a5a5a;--border:#e0e0e0;
+  --bg:#f5f6f8;--card:#ffffff;
+  --text:#1a1a1a;--text2:#555;--text3:#888;
+  --radius:10px;--shadow:0 1px 4px rgba(0,0,0,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px}
+
+/* TOPBAR */
+.topbar{background:var(--hijau);color:#fff;padding:14px 16px 12px;position:sticky;top:0;z-index:50}
+.topbar h1{font-size:17px;font-weight:600;letter-spacing:0.01em}
+.topbar p{font-size:12px;opacity:0.8;margin-top:2px}
+
+/* DATE BAR */
+.datebar{display:flex;align-items:center;justify-content:space-between;background:#fff;padding:10px 14px;border-bottom:1px solid var(--border);position:sticky;top:58px;z-index:40}
+.datebar-left .hari{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.05em}
+.datebar-left .tgl{font-size:15px;font-weight:600;color:var(--text)}
+.datebar-right{display:flex;align-items:center;gap:6px}
+.datebar-right label{font-size:12px;color:var(--text2)}
+#tgl-picker{font-size:13px;border:1px solid var(--border);border-radius:6px;padding:5px 8px;background:#fff;color:var(--text)}
+
+/* STATUS STRIP */
+.status-strip{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-bottom:1px solid var(--border)}
+.ss-item{padding:10px 4px;text-align:center;border-right:1px solid var(--border)}
+.ss-item:last-child{border-right:none}
+.ss-item .num{font-size:22px;font-weight:700}
+.ss-item .lbl{font-size:10px;color:var(--text3);margin-top:1px;text-transform:uppercase}
+.ss-item.h .num{color:var(--hijau2)}
+.ss-item.a .num{color:var(--merah)}
+.ss-item.i .num{color:var(--biru)}
+.ss-item.s .num{color:var(--kuning)}
+
+/* FILTER TABS */
+.filter-bar{display:flex;align-items:center;gap:0;padding:0 12px;background:#fff;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar{display:none}
+.ftab{flex-shrink:0;padding:11px 14px;font-size:13px;font-weight:500;color:var(--text3);border:none;background:none;border-bottom:2.5px solid transparent;cursor:pointer;white-space:nowrap;transition:all 0.15s}
+.ftab.active{color:var(--hijau);border-bottom-color:var(--hijau)}
+
+/* SEARCH + ACTIONS BAR */
+.actions-bar{padding:10px 12px;background:var(--bg);display:flex;align-items:center;gap:8px}
+.search-wrap{flex:1;display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:8px 12px}
+.search-wrap svg{flex-shrink:0;opacity:0.4}
+.search-wrap input{border:none;outline:none;background:transparent;font-size:14px;color:var(--text);width:100%}
+.btn-hadir-semua{flex-shrink:0;display:flex;align-items:center;gap:5px;padding:8px 12px;background:var(--hijau);color:#fff;border:none;border-radius:var(--radius);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:opacity 0.15s}
+.btn-hadir-semua:active{opacity:0.8}
+
+/* LIST */
+.list-wrap{padding:0 12px 100px}
+.kelas-header{display:flex;align-items:center;justify-content:space-between;padding:10px 4px 6px;margin-top:6px}
+.kelas-header span{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em}
+.kelas-header small{font-size:11px;color:var(--text3)}
+.santri-card{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px;margin-bottom:6px;box-shadow:var(--shadow);transition:border-color 0.15s}
+.santri-card.h{border-left:3px solid var(--hijau2)}
+.santri-card.a{border-left:3px solid var(--merah)}
+.santri-card.i{border-left:3px solid var(--biru)}
+.santri-card.s{border-left:3px solid var(--kuning)}
+.avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;color:#fff}
+.santri-info{flex:1;min-width:0}
+.santri-info .nama{font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.santri-info .klabel{font-size:11px;color:var(--text3);margin-top:1px}
+.status-btns{display:flex;gap:3px;flex-shrink:0}
+.sbtn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:var(--bg);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all 0.12s;position:relative}
+.sbtn:active{transform:scale(0.9)}
+.sbtn[data-st="H"].on{background:var(--hijau-muda);border-color:var(--hijau2)}
+.sbtn[data-st="A"].on{background:var(--merah-muda);border-color:var(--merah)}
+.sbtn[data-st="I"].on{background:var(--biru-muda);border-color:var(--biru)}
+.sbtn[data-st="S"].on{background:var(--kuning-muda);border-color:var(--kuning)}
+
+/* BOTTOM FIXED */
+.bottom-fixed{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:10px 12px;display:flex;gap:8px;z-index:50}
+.btn-rekap{flex:none;padding:11px 14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);font-size:13px;font-weight:600;cursor:pointer;color:var(--text);display:flex;align-items:center;gap:5px}
+.btn-simpan{flex:1;padding:11px;background:var(--hijau);color:#fff;border:none;border-radius:var(--radius);font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:opacity 0.15s}
+.btn-simpan:active{opacity:0.85}
+.btn-simpan.loading{opacity:0.7;pointer-events:none}
+
+/* TOAST */
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(10px);background:#1a1a1a;color:#fff;padding:10px 18px;border-radius:24px;font-size:13px;opacity:0;transition:all 0.25s;pointer-events:none;z-index:200;white-space:nowrap;max-width:calc(100% - 32px);text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.ok{background:var(--hijau)}
+.toast.err{background:var(--merah)}
+
+/* MODAL OVERLAY */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:100;align-items:flex-end;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal-box{background:#fff;border-radius:18px 18px 0 0;width:100%;max-width:480px;max-height:90vh;display:flex;flex-direction:column}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 12px;border-bottom:1px solid var(--border);flex-shrink:0}
+.modal-head h2{font-size:16px;font-weight:700}
+.modal-close{width:32px;height:32px;border-radius:50%;border:none;background:var(--bg);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;color:var(--text3)}
+.modal-body{padding:14px;overflow-y:auto;flex:1}
+
+/* REKAP */
+.rekap-tab{display:flex;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.rtab{flex:1;padding:8px 4px;font-size:12px;font-weight:600;border:none;background:#fff;cursor:pointer;color:var(--text3)}
+.rtab.active{background:var(--hijau);color:#fff}
+.rekap-summary{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.rs-card{background:var(--bg);border-radius:8px;padding:10px;text-align:center}
+.rs-card .rnum{font-size:20px;font-weight:700}
+.rs-card .rlbl{font-size:11px;color:var(--text3);margin-top:2px}
+.rekap-table{width:100%;border-collapse:collapse;font-size:12px}
+.rekap-table th{text-align:left;padding:7px 8px;background:var(--bg);color:var(--text3);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.04em;position:sticky;top:0}
+.rekap-table td{padding:7px 8px;border-bottom:1px solid var(--border)}
+.rekap-table tr:last-child td{border-bottom:none}
+.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700}
+.bH{background:var(--hijau-muda);color:var(--hijau)}
+.bA{background:var(--merah-muda);color:var(--merah)}
+.bI{background:var(--biru-muda);color:var(--biru)}
+.bS{background:var(--kuning-muda);color:var(--kuning)}
+.btn-export{width:100%;margin-top:12px;padding:11px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);font-size:13px;font-weight:600;cursor:pointer;color:var(--text);display:flex;align-items:center;justify-content:center;gap:6px}
+
+/* KONFIRMASI HADIR SEMUA */
+.confirm-box{background:#fff;border-radius:14px;padding:20px;margin:12px;max-width:340px}
+.confirm-box h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.confirm-box p{font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.5}
+.confirm-btns{display:flex;gap:8px}
+.btn-cancel{flex:1;padding:10px;background:var(--bg);border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer}
+.btn-confirm{flex:1;padding:10px;background:var(--hijau);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer}
+
+/* KONEKSI MODAL */
+.koneksi-form{display:flex;flex-direction:column;gap:12px}
+.koneksi-form label{font-size:12px;font-weight:600;color:var(--text2);margin-bottom:3px;display:block}
+.koneksi-form input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px}
+.koneksi-form .hint{font-size:11px;color:var(--text3);margin-top:4px;line-height:1.5}
+.koneksi-form .btn-koneksi{width:100%;padding:12px;background:var(--hijau);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;margin-top:4px}
+.status-koneksi{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;font-size:13px;font-weight:500;margin-bottom:14px}
+.status-koneksi.connected{background:var(--hijau-muda);color:var(--hijau)}
+.status-koneksi.disconnected{background:var(--merah-muda);color:var(--merah)}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot.on{background:var(--hijau2)}
+.dot.off{background:var(--merah)}
+
+/* PROG BAR */
+.prog-bar{height:3px;background:var(--hijau-muda);border-radius:2px;overflow:hidden;margin-bottom:10px}
+.prog-fill{height:100%;background:var(--hijau2);border-radius:2px;transition:width 0.3s}
+
+/* EMPTY */
+.empty{text-align:center;padding:32px 16px;color:var(--text3);font-size:13px}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <h1>🌙 Absensi Sholat Subuh</h1>
+  <p id="nama-pesantren">Pesantren — Semua Kelas</p>
+</div>
+
+<!-- DATE BAR -->
+<div class="datebar">
+  <div class="datebar-left">
+    <div class="hari" id="hari-txt"></div>
+    <div class="tgl" id="tgl-txt"></div>
+  </div>
+  <div class="datebar-right">
+    <label for="tgl-picker">📅</label>
+    <input type="date" id="tgl-picker"/>
+  </div>
+</div>
+
+<!-- STATUS STRIP -->
+<div class="status-strip">
+  <div class="ss-item h"><div class="num" id="cnt-H">0</div><div class="lbl">✅ Hadir</div></div>
+  <div class="ss-item a"><div class="num" id="cnt-A">0</div><div class="lbl">❌ Alfa</div></div>
+  <div class="ss-item i"><div class="num" id="cnt-I">0</div><div class="lbl">📋 Izin</div></div>
+  <div class="ss-item s"><div class="num" id="cnt-S">0</div><div class="lbl">🏥 Sakit</div></div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div style="padding:0 12px 0;background:#fff;border-bottom:1px solid var(--border)">
+  <div style="font-size:11px;color:var(--text3);padding:5px 0 3px;display:flex;justify-content:space-between">
+    <span>Progress absensi</span>
+    <span id="prog-pct">0 / 70</span>
+  </div>
+  <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+</div>
+
+<!-- FILTER TABS -->
+<div class="filter-bar" id="filter-bar">
+  <button class="ftab active" data-kelas="Semua" onclick="filterKelas(this)">Semua (70)</button>
+  <button class="ftab" data-kelas="Lambatan D" onclick="filterKelas(this)">Lambatan D</button>
+  <button class="ftab" data-kelas="Lambatan D" onclick="filterKelas(this)">Lambatan D</button>
+  <button class="ftab" data-kelas="Lambatan B" onclick="filterKelas(this)">Lambatan B</button>
+  <button class="ftab" data-kelas="mix" onclick="filterKelas(this)">mix</button>
+</div>
+
+<!-- ACTIONS BAR -->
+<div class="actions-bar">
+  <div class="search-wrap">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="cari" placeholder="Cari nama santri..." oninput="renderList()"/>
+  </div>
+  <button class="btn-hadir-semua" onclick="konfirmasiHadirSemua()">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    Hadir Semua
+  </button>
+</div>
+
+<!-- LIST -->
+<div class="list-wrap" id="list-wrap">
+  <div id="list"></div>
+</div>
+
+<!-- BOTTOM FIXED -->
+<div class="bottom-fixed">
+  <button class="btn-rekap" onclick="bukaRekap()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+    Rekap
+  </button>
+  <button class="btn-rekap" onclick="bukaKoneksi()" style="flex:none">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+    Sheets
+  </button>
+  <button class="btn-simpan" id="btn-simpan" onclick="simpanAbsensi()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+    Simpan Absensi
+  </button>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- MODAL: KONFIRMASI HADIR SEMUA -->
+<div class="modal-overlay" id="modal-hadir-semua" style="align-items:center;justify-content:center" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="confirm-box">
+    <h3>✅ Hadir Semua?</h3>
+    <p id="konfirm-text">Tandai semua <strong>70 santri</strong> sebagai <strong>Hadir</strong> untuk hari ini?<br/><br/>Status yang sudah diisi sebelumnya akan diganti.</p>
+    <div class="confirm-btns">
+      <button class="btn-cancel" onclick="document.getElementById('modal-hadir-semua').classList.remove('open')">Batal</button>
+      <button class="btn-confirm" onclick="hadirSemua()">Ya, Hadir Semua</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: REKAP -->
+<div class="modal-overlay" id="modal-rekap" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>📊 Rekap Absensi</h2>
+      <button class="modal-close" onclick="document.getElementById('modal-rekap').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="rekap-tab">
+        <button class="rtab active" onclick="switchRekap('minggu',this)">Minggu Ini</button>
+        <button class="rtab" onclick="switchRekap('bulan',this)">Bulan Ini</button>
+        <button class="rtab" onclick="switchRekap('tahun',this)">Tahun Ini</button>
+        <button class="rtab" onclick="switchRekap('semua',this)">Semua</button>
+      </div>
+      <div id="rekap-content"></div>
+      <button class="btn-export" onclick="exportCSV()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export CSV (Excel / Google Sheets)
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: KONEKSI GOOGLE SHEETS -->
+<div class="modal-overlay" id="modal-koneksi" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>🔗 Koneksi Google Sheets</h2>
+      <button class="modal-close" onclick="document.getElementById('modal-koneksi').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="status-koneksi-ui"></div>
+      <div class="koneksi-form">
+        <div>
+          <label>URL Google Apps Script (Web App URL)</label>
+          <input type="url" id="script-url" placeholder="https://script.google.com/macros/s/xxxxx/exec" />
+          <div class="hint">📖 Baca panduan <strong>PANDUAN_SETUP.md</strong> untuk cara mendapatkan URL ini.</div>
+        </div>
+        <div>
+          <label>Nama Pesantren (opsional)</label>
+          <input type="text" id="inp-nama-pesantren" placeholder="Pesantren Darul Ilmi" />
+        </div>
+        <button class="btn-koneksi" onclick="simpanKoneksi()">💾 Simpan & Test Koneksi</button>
+        <button onclick="testKoneksi()" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;background:#fff">🔄 Test Koneksi</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA SANTRI — EDIT SESUAI DAFTAR ASLI
+// Ganti nama-nama di bawah ini dengan nama santri yang sebenarnya
+// ============================================================
+const DAFTAR_SANTRI = [
+  // KELAS Lambatan D (11 santri)
+  {id:1, nama:"Allesandro Lorenti Jompang", kelas:"Lambatan D"},
+  {id:2, nama:"Emir Nayyotama Suprapto", kelas:"Lambatan D"},
+  {id:3, nama:"Fadlan Maulana Apriyandi", kelas:"Lambatan D"},
+  {id:4, nama:"Ferdy Zaidan Nurhaj", kelas:"Lambatan D"},
+  {id:5, nama:"Feri Juansyah", kelas:"Lambatan D"},
+  {id:6, nama:"Hadil Mahasin Ibad ", kelas:"Lambatan D"},
+  {id:7, nama:"Marcel Dwi Sakti", kelas:"Lambatan D"},
+  {id:8, nama:"Muhammad Farhan Dewanto", kelas:"Lambatan D"},
+  {id:9, nama:"Muh. Redyansa", kelas:"Lambatan D"},
+  {id:10, nama:"Radhika Adhitya Arifin", kelas:"Lambatan D"},
+  {id:11, nama:"Yusran Luky Ardana", kelas:"Lambatan D"},
+ 
+  // KELAS Lambatan C (7 santri)
+  {id:12, nama:"Alfauzansyah", kelas:"Lambatan C"},
+  {id:13, nama:"Fawaz Shandy Aulia", kelas:"Lambatan C"},
+  {id:14, nama:"Muhammad Asadin Nur", kelas:"Lambatan C"},
+  {id:15, nama:"M. Septian Ramadhoni", kelas:"Lambatan C"},
+  {id:16, nama:"Nafian Sulton Aulia", kelas:"Lambatan C"},
+  {id:17, nama:"Rifki Wahyu S.", kelas:"Lambatan C"},
+  {id:18, nama:"Zakki Alfin", kelas:"Lambatan C"},
+  
+
+  // KELAS Lambatan B (4 santri)
+  {id:19, nama:"Goby Fairuz Arroyan Sunandinata", kelas:"Lambatan B"},
+  {id:20, nama:"Said Gufroni Danur Wenda", kelas:"Lambatan B"},
+  {id:21, nama:"Utbah Abdul Faqih", kelas:"Lambatan B"},
+  {id:22, nama:"Zulham Putra P.", kelas:"Lambatan B"},
+  
+  // KELAS MIX (8 santri)
+  {id:23, nama:"Arief Triono", kelas:"mix"},
+  {id:24, nama:"Arka Fauzan", kelas:"mix"},
+  {id:25, nama:"Ilham Paku Jagad", kelas:"mix"},
+  {id:26, nama:"Ovan Nathan Mahesa", kelas:"mix"},
+  {id:27, nama:"Raiyandito Aisy Yahya", kelas:"mix"},
+  {id:28, nama:"Ubaidillah Khoiri", kelas:"mix"},
+  {id:29, nama:"Willy Wildan Sholihan", kelas:"mix"},
+  {id:30, nama:"Yoga Tri Saputra", kelas:"mix"},
+ 
+];
+
+// ============================================================
+// WARNA KELAS
+// ============================================================
+const KELAS_COLOR = {
+  "Lambatan D": "#0a5c44",
+  "Lambatan D": "#1a6fa8",
+  "Lambatan B": "#8B3A62",
+  "mix": "#b07800",
+};
+
+// ============================================================
+// STATE
+// ============================================================
+let absensi = {};       // {id: 'H'|'A'|'I'|'S'}
+let savedData = {};     // {tanggal: {id: status}}
+let filterAktif = "Semua";
+let rekapMode = "minggu";
+let scriptURL = "";
+let namaPesantren = "Pesantren — Semua Kelas";
+
+// ============================================================
+// INIT
+// ============================================================
+window.onload = function(){
+  muatStorage();
+  const today = todayStr();
+  const picker = document.getElementById('tgl-picker');
+  picker.value = today;
+  picker.addEventListener('change', gantiTanggal);
+  updateTanggalDisplay();
+  renderList();
+  updateStatusKoneksiUI();
+};
+
+function muatStorage(){
+  try {
+    const d = localStorage.getItem('absensi_data');
+    if(d) savedData = JSON.parse(d);
+    scriptURL = localStorage.getItem('script_url') || '';
+    namaPesantren = localStorage.getItem('nama_pesantren') || 'Pesantren — Semua Kelas';
+    document.getElementById('nama-pesantren').textContent = namaPesantren;
+    document.getElementById('inp-nama-pesantren').value = namaPesantren === 'Pesantren — Semua Kelas' ? '' : namaPesantren;
+    if(scriptURL) document.getElementById('script-url').value = scriptURL;
+    // Muat absensi hari ini jika ada
+    const today = todayStr();
+    absensi = savedData[today] ? {...savedData[today]} : {};
+  } catch(e){ savedData = {}; }
+}
+
+function simpanStorage(){
+  try { localStorage.setItem('absensi_data', JSON.stringify(savedData)); } catch(e){}
+}
+
+// ============================================================
+// TANGGAL
+// ============================================================
+function todayStr(){
+  return new Date().toISOString().split('T')[0];
+}
+
+function gantiTanggal(){
+  updateTanggalDisplay();
+  const tgl = document.getElementById('tgl-picker').value;
+  absensi = savedData[tgl] ? {...savedData[tgl]} : {};
+  renderList();
+}
+
+function updateTanggalDisplay(){
+  const tgl = document.getElementById('tgl-picker').value;
+  const d = new Date(tgl + 'T00:00:00');
+  const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  document.getElementById('hari-txt').textContent = hari[d.getDay()];
+  document.getElementById('tgl-txt').textContent = d.getDate() + ' ' + bulan[d.getMonth()] + ' ' + d.getFullYear();
+}
+
+// ============================================================
+// FILTER KELAS
+// ============================================================
+function filterKelas(el){
+  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  filterAktif = el.dataset.kelas;
+  renderList();
+}
+
+// ============================================================
+// HADIR SEMUA
+// ============================================================
+function konfirmasiHadirSemua(){
+  const aktif = filterAktif === 'Semua' ? 'semua santri' : 'santri ' + filterAktif;
+  const jumlah = filterAktif === 'Semua' ? DAFTAR_SANTRI.length :
+    DAFTAR_SANTRI.filter(s => s.kelas === filterAktif).length;
+  document.getElementById('konfirm-text').innerHTML =
+    `Tandai <strong>${jumlah} ${aktif}</strong> sebagai <strong>Hadir ✅</strong> untuk hari ini?<br/><br/>Status yang sudah diisi sebelumnya akan diganti.`;
+  document.getElementById('modal-hadir-semua').classList.add('open');
+}
+
+function hadirSemua(){
+  const target = filterAktif === 'Semua' ? DAFTAR_SANTRI :
+    DAFTAR_SANTRI.filter(s => s.kelas === filterAktif);
+  target.forEach(s => { absensi[s.id] = 'H'; });
+  document.getElementById('modal-hadir-semua').classList.remove('open');
+  renderList();
+  const txt = filterAktif === 'Semua' ? 'Semua santri' : 'Semua santri ' + filterAktif;
+  showToast('✅ ' + txt + ' ditandai Hadir', 'ok');
+}
+
+// ============================================================
+// RENDER LIST
+// ============================================================
+function renderList(){
+  const cari = document.getElementById('cari').value.toLowerCase().trim();
+  const listEl = document.getElementById('list');
+
+  const filtered = DAFTAR_SANTRI.filter(s => {
+    const kelasOk = filterAktif === 'Semua' || s.kelas === filterAktif;
+    const cariOk = !cari || s.nama.toLowerCase().includes(cari) || s.kelas.toLowerCase().includes(cari);
+    return kelasOk && cariOk;
+  });
+
+  if(!filtered.length){
+    listEl.innerHTML = '<div class="empty">🔍 Tidak ada santri ditemukan</div>';
+    updateStats();
+    return;
+  }
+
+  let html = '';
+  let prevKelas = '';
+  filtered.forEach(s => {
+    if(s.kelas !== prevKelas){
+      const jml = DAFTAR_SANTRI.filter(x => x.kelas === s.kelas).length;
+      const sudah = DAFTAR_SANTRI.filter(x => x.kelas === s.kelas && absensi[x.id]).length;
+      html += `<div class="kelas-header">
+        <span style="color:${KELAS_COLOR[s.kelas]}">${s.kelas}</span>
+        <small>${sudah}/${jml} diisi</small>
+      </div>`;
+      prevKelas = s.kelas;
+    }
+    const st = absensi[s.id] || '';
+    const stClass = {H:'h',A:'a',I:'i',S:'s'}[st] || '';
+    const warna = KELAS_COLOR[s.kelas] || '#555';
+    const inisial = s.nama.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
+    html += `<div class="santri-card ${stClass}" id="card-${s.id}">
+      <div class="avatar" style="background:${warna}">${inisial}</div>
+      <div class="santri-info">
+        <div class="nama">${s.nama}</div>
+        <div class="klabel">${s.kelas}</div>
+      </div>
+      <div class="status-btns">
+        <button class="sbtn ${st==='H'?'on':''}" data-st="H" onclick="setStatus(${s.id},'H')" title="Hadir">✅</button>
+        <button class="sbtn ${st==='A'?'on':''}" data-st="A" onclick="setStatus(${s.id},'A')" title="Alfa">❌</button>
+        <button class="sbtn ${st==='I'?'on':''}" data-st="I" onclick="setStatus(${s.id},'I')" title="Izin">📋</button>
+        <button class="sbtn ${st==='S'?'on':''}" data-st="S" onclick="setStatus(${s.id},'S')" title="Sakit">🏥</button>
+      </div>
+    </div>`;
+  });
+
+  listEl.innerHTML = html;
+  updateStats();
+}
+
+function setStatus(id, st){
+  absensi[id] = absensi[id] === st ? '' : st;
+  if(!absensi[id]) delete absensi[id];
+  // Update card tanpa full re-render (lebih cepat di HP)
+  const card = document.getElementById('card-' + id);
+  if(card){
+    card.className = 'santri-card ' + ({H:'h',A:'a',I:'i',S:'s'}[absensi[id]]||'');
+    card.querySelectorAll('.sbtn').forEach(btn => {
+      btn.classList.toggle('on', btn.dataset.st === absensi[id]);
+    });
+  }
+  updateStats();
+}
+
+function updateStats(){
+  const vals = Object.values(absensi);
+  ['H','A','I','S'].forEach(st => {
+    document.getElementById('cnt-'+st).textContent = vals.filter(v=>v===st).length;
+  });
+  const total = DAFTAR_SANTRI.length;
+  const isi = Object.keys(absensi).filter(id=>absensi[id]).length;
+  document.getElementById('prog-pct').textContent = isi + ' / ' + total;
+  document.getElementById('prog-fill').style.width = Math.round(isi/total*100) + '%';
+}
+
+// ============================================================
+// SIMPAN ABSENSI
+// ============================================================
+async function simpanAbsensi(){
+  const tgl = document.getElementById('tgl-picker').value;
+  savedData[tgl] = {...absensi};
+  simpanStorage();
+
+  const total = DAFTAR_SANTRI.length;
+  const isi = Object.keys(absensi).filter(id=>absensi[id]).length;
+  const H = Object.values(absensi).filter(v=>v==='H').length;
+
+  if(scriptURL){
+    await kirimKeSheets(tgl);
+  } else {
+    showToast(`💾 Tersimpan! ${H} hadir dari ${total} santri`, 'ok');
+  }
+}
+
+// ============================================================
+// GOOGLE SHEETS INTEGRATION
+// ============================================================
+async function kirimKeSheets(tgl){
+  const btn = document.getElementById('btn-simpan');
+  btn.classList.add('loading');
+  btn.innerHTML = '⏳ Mengirim...';
+
+  const rows = DAFTAR_SANTRI.map(s => ({
+    tanggal: tgl,
+    nama: s.nama,
+    kelas: s.kelas,
+    status: absensi[s.id] || 'Belum diisi',
+    status_label: {H:'Hadir',A:'Alfa',I:'Izin',S:'Sakit'}[absensi[s.id]] || 'Belum diisi'
+  }));
+
+  try {
+    await fetch(scriptURL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({action:'simpan', tanggal:tgl, data:rows})
+    });
+    showToast('✅ Tersimpan & terkirim ke Google Sheets!', 'ok');
+  } catch(e){
+    showToast('⚠️ Tersimpan lokal. Gagal kirim ke Sheets.', '');
+  }
+
+  btn.classList.remove('loading');
+  btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Simpan Absensi`;
+}
+
+// ============================================================
+// REKAP
+// ============================================================
+function bukaRekap(){
+  document.getElementById('modal-rekap').classList.add('open');
+  tampilkanRekap();
+}
+
+function switchRekap(mode, el){
+  document.querySelectorAll('.rtab').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  rekapMode = mode;
+  tampilkanRekap();
+}
+
+function filterTanggalRekap(dates){
+  const now = new Date();
+  if(rekapMode === 'minggu'){
+    const day = now.getDay();
+    const senin = new Date(now);
+    senin.setDate(now.getDate() - (day===0?6:day-1));
+    senin.setHours(0,0,0,0);
+    return dates.filter(d => new Date(d+'T00:00:00') >= senin);
+  }
+  if(rekapMode === 'bulan'){
+    const bln = now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+    return dates.filter(d => d.startsWith(bln));
+  }
+  if(rekapMode === 'tahun'){
+    return dates.filter(d => d.startsWith(String(now.getFullYear())));
+  }
+  return dates;
+}
+
+function tampilkanRekap(){
+  const allDates = Object.keys(savedData).sort().reverse();
+  const dates = filterTanggalRekap(allDates);
+  const el = document.getElementById('rekap-content');
+
+  if(!dates.length){
+    el.innerHTML = '<div class="empty">📭 Belum ada data untuk periode ini</div>';
+    return;
+  }
+
+  const allVals = dates.flatMap(d => Object.values(savedData[d] || {}));
+  const totH = allVals.filter(v=>v==='H').length;
+  const totA = allVals.filter(v=>v==='A').length;
+  const totI = allVals.filter(v=>v==='I').length;
+  const totS = allVals.filter(v=>v==='S').length;
+
+  const bl = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+
+  let html = `<div class="rekap-summary">
+    <div class="rs-card"><div class="rnum" style="color:var(--hijau2)">${totH}</div><div class="rlbl">Total Hadir</div></div>
+    <div class="rs-card"><div class="rnum" style="color:var(--merah)">${totA}</div><div class="rlbl">Total Alfa</div></div>
+    <div class="rs-card"><div class="rnum" style="color:var(--biru)">${totI}</div><div class="rlbl">Total Izin</div></div>
+    <div class="rs-card"><div class="rnum" style="color:var(--kuning)">${totS}</div><div class="rlbl">Total Sakit</div></div>
+  </div>
+  <div style="font-size:11px;color:var(--text3);margin-bottom:8px">${dates.length} hari tercatat</div>
+  <div style="overflow-x:auto">
+  <table class="rekap-table">
+    <thead><tr><th>Tanggal</th><th>✅ H</th><th>❌ A</th><th>📋 I</th><th>🏥 S</th><th>%</th></tr></thead>
+    <tbody>`;
+
+  dates.forEach(d => {
+    const v = Object.values(savedData[d] || {});
+    const H = v.filter(x=>x==='H').length;
+    const A = v.filter(x=>x==='A').length;
+    const I = v.filter(x=>x==='I').length;
+    const S = v.filter(x=>x==='S').length;
+    const total = DAFTAR_SANTRI.length;
+    const pct = Math.round(H/total*100);
+    const dt = new Date(d+'T00:00:00');
+    const label = dt.getDate() + ' ' + bl[dt.getMonth()];
+    html += `<tr>
+      <td style="font-weight:600">${label}</td>
+      <td><span class="badge bH">${H}</span></td>
+      <td><span class="badge bA">${A}</span></td>
+      <td><span class="badge bI">${I}</span></td>
+      <td><span class="badge bS">${S}</span></td>
+      <td style="font-size:12px;color:${pct>=80?'var(--hijau2)':'var(--merah)'}">${pct}%</td>
+    </tr>`;
+  });
+
+  html += `</tbody></table></div>`;
+  el.innerHTML = html;
+}
+
+// ============================================================
+// EXPORT CSV
+// ============================================================
+function exportCSV(){
+  const allDates = Object.keys(savedData).sort();
+  const dates = rekapMode === 'semua' ? allDates : filterTanggalRekap(allDates);
+
+  if(!dates.length){ showToast('Tidak ada data untuk di-export',''); return; }
+
+  let csv = 'Tanggal,Hari,Nama,Kelas,Status,Keterangan\n';
+  const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const stLabel = {H:'Hadir',A:'Alfa',I:'Izin',S:'Sakit'};
+
+  dates.forEach(d => {
+    const dt = new Date(d+'T00:00:00');
+    DAFTAR_SANTRI.forEach(s => {
+      const st = (savedData[d] && savedData[d][s.id]) || '';
+      csv += `${d},${hari[dt.getDay()]},"${s.nama}","${s.kelas}","${st}","${stLabel[st]||'Belum diisi'}"\n`;
+    });
+  });
+
+  const blob = new Blob(['\uFEFF'+csv], {type:'text/csv;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'absensi_subuh_' + new Date().toISOString().split('T')[0] + '.csv';
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(url), 3000);
+  showToast('📥 File CSV berhasil diunduh', 'ok');
+}
+
+// ============================================================
+// KONEKSI SHEETS
+// ============================================================
+function bukaKoneksi(){
+  updateStatusKoneksiUI();
+  document.getElementById('modal-koneksi').classList.add('open');
+}
+
+function updateStatusKoneksiUI(){
+  const el = document.getElementById('status-koneksi-ui');
+  if(!el) return;
+  if(scriptURL){
+    el.innerHTML = `<div class="status-koneksi connected"><div class="dot on"></div> Terhubung ke Google Sheets</div>`;
+  } else {
+    el.innerHTML = `<div class="status-koneksi disconnected"><div class="dot off"></div> Belum terhubung ke Google Sheets</div>`;
+  }
+}
+
+function simpanKoneksi(){
+  const url = document.getElementById('script-url').value.trim();
+  const nama = document.getElementById('inp-nama-pesantren').value.trim();
+  if(url && !url.startsWith('https://script.google.com')){
+    showToast('❌ URL tidak valid. Harus dari script.google.com','err');
+    return;
+  }
+  scriptURL = url;
+  if(nama){
+    namaPesantren = nama + ' — Semua Kelas';
+    document.getElementById('nama-pesantren').textContent = namaPesantren;
+    localStorage.setItem('nama_pesantren', namaPesantren);
+  }
+  localStorage.setItem('script_url', scriptURL);
+  updateStatusKoneksiUI();
+  showToast(url ? '✅ Koneksi tersimpan!' : '💾 Disimpan (tanpa Sheets)', 'ok');
+  if(url) testKoneksi();
+}
+
+async function testKoneksi(){
+  if(!scriptURL){ showToast('⚠️ Masukkan URL terlebih dahulu',''); return; }
+  showToast('🔄 Menguji koneksi...','');
+  try {
+    await fetch(scriptURL + '?action=ping', {mode:'no-cors'});
+    showToast('✅ Koneksi berhasil!', 'ok');
+  } catch(e){
+    showToast('❌ Gagal terhubung. Cek URL.', 'err');
+  }
+}
+
+// ============================================================
+// TOAST
+// ============================================================
+let toastTimer;
+function showToast(msg, type=''){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (type ? ' '+type : '');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 3000);
+}
+</script>
+</body>
+</html>
