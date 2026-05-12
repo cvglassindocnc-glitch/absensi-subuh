@@ -14,25 +14,28 @@
   --merah:#c0392b;--merah-muda:#FCEBEB;
   --biru:#1a6fa8;--biru-muda:#E6F1FB;
   --kuning:#b07800;--kuning-muda:#FAEEDA;
-  --border:#e0e0e0;--bg:#f5f6f8;--card:#ffffff;
+  --abu:#5a5a5a;--border:#e0e0e0;
+  --bg:#f5f6f8;--card:#ffffff;
   --text:#1a1a1a;--text2:#555;--text3:#888;
   --radius:10px;--shadow:0 1px 4px rgba(0,0,0,0.08);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px}
 
-/* ── TOPBAR ── */
+/* TOPBAR */
 .topbar{background:var(--hijau);color:#fff;padding:14px 16px 12px;position:sticky;top:0;z-index:50}
-.topbar h1{font-size:17px;font-weight:600}
-.topbar p{font-size:12px;opacity:.8;margin-top:2px}
+.topbar h1{font-size:17px;font-weight:600;letter-spacing:0.01em}
+.topbar p{font-size:12px;opacity:0.8;margin-top:2px}
 
-/* ── DATE BAR ── */
+/* DATE BAR */
 .datebar{display:flex;align-items:center;justify-content:space-between;background:#fff;padding:10px 14px;border-bottom:1px solid var(--border);position:sticky;top:58px;z-index:40}
-.datebar-left .hari{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em}
-.datebar-left .tgl{font-size:15px;font-weight:600}
+.datebar-left .hari{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.05em}
+.datebar-left .tgl{font-size:15px;font-weight:600;color:var(--text)}
+.datebar-right{display:flex;align-items:center;gap:6px}
+.datebar-right label{font-size:12px;color:var(--text2)}
 #tgl-picker{font-size:13px;border:1px solid var(--border);border-radius:6px;padding:5px 8px;background:#fff;color:var(--text)}
 
-/* ── STATUS STRIP ── */
+/* STATUS STRIP */
 .status-strip{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-bottom:1px solid var(--border)}
 .ss-item{padding:10px 4px;text-align:center;border-right:1px solid var(--border)}
 .ss-item:last-child{border-right:none}
@@ -43,32 +46,26 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .ss-item.i .num{color:var(--biru)}
 .ss-item.s .num{color:var(--kuning)}
 
-/* ── PROGRESS ── */
-.prog-wrap{padding:0 12px;background:#fff;border-bottom:1px solid var(--border)}
-.prog-info{font-size:11px;color:var(--text3);padding:5px 0 3px;display:flex;justify-content:space-between}
-.prog-bar{height:3px;background:var(--hijau-muda);border-radius:2px;overflow:hidden;margin-bottom:10px}
-.prog-fill{height:100%;background:var(--hijau2);border-radius:2px;transition:width .3s}
-
-/* ── FILTER TABS ── */
-.filter-bar{display:flex;gap:0;padding:0 12px;background:#fff;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
+/* FILTER TABS */
+.filter-bar{display:flex;align-items:center;gap:0;padding:0 12px;background:#fff;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
 .filter-bar::-webkit-scrollbar{display:none}
-.ftab{flex-shrink:0;padding:11px 14px;font-size:13px;font-weight:500;color:var(--text3);border:none;background:none;border-bottom:2.5px solid transparent;cursor:pointer;white-space:nowrap;transition:all .15s}
+.ftab{flex-shrink:0;padding:11px 14px;font-size:13px;font-weight:500;color:var(--text3);border:none;background:none;border-bottom:2.5px solid transparent;cursor:pointer;white-space:nowrap;transition:all 0.15s}
 .ftab.active{color:var(--hijau);border-bottom-color:var(--hijau)}
 
-/* ── ACTIONS BAR ── */
+/* SEARCH + ACTIONS BAR */
 .actions-bar{padding:10px 12px;background:var(--bg);display:flex;align-items:center;gap:8px}
 .search-wrap{flex:1;display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:8px 12px}
-.search-wrap svg{flex-shrink:0;opacity:.4}
+.search-wrap svg{flex-shrink:0;opacity:0.4}
 .search-wrap input{border:none;outline:none;background:transparent;font-size:14px;color:var(--text);width:100%}
-.btn-hadir-semua{flex-shrink:0;display:flex;align-items:center;gap:5px;padding:8px 12px;background:var(--hijau);color:#fff;border:none;border-radius:var(--radius);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
-.btn-hadir-semua:active{opacity:.8}
+.btn-hadir-semua{flex-shrink:0;display:flex;align-items:center;gap:5px;padding:8px 12px;background:var(--hijau);color:#fff;border:none;border-radius:var(--radius);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:opacity 0.15s}
+.btn-hadir-semua:active{opacity:0.8}
 
-/* ── LIST ── */
-.list-wrap{padding:0 12px 105px}
+/* LIST */
+.list-wrap{padding:0 12px 100px}
 .kelas-header{display:flex;align-items:center;justify-content:space-between;padding:10px 4px 6px;margin-top:6px}
-.kelas-header span{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.kelas-header span{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em}
 .kelas-header small{font-size:11px;color:var(--text3)}
-.santri-card{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px;margin-bottom:6px;box-shadow:var(--shadow)}
+.santri-card{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px;margin-bottom:6px;box-shadow:var(--shadow);transition:border-color 0.15s}
 .santri-card.h{border-left:3px solid var(--hijau2)}
 .santri-card.a{border-left:3px solid var(--merah)}
 .santri-card.i{border-left:3px solid var(--biru)}
@@ -78,39 +75,37 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .santri-info .nama{font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .santri-info .klabel{font-size:11px;color:var(--text3);margin-top:1px}
 .status-btns{display:flex;gap:3px;flex-shrink:0}
-.sbtn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:var(--bg);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all .12s}
-.sbtn:active{transform:scale(.9)}
+.sbtn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:var(--bg);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all 0.12s;position:relative}
+.sbtn:active{transform:scale(0.9)}
 .sbtn[data-st="H"].on{background:var(--hijau-muda);border-color:var(--hijau2)}
 .sbtn[data-st="A"].on{background:var(--merah-muda);border-color:var(--merah)}
 .sbtn[data-st="I"].on{background:var(--biru-muda);border-color:var(--biru)}
 .sbtn[data-st="S"].on{background:var(--kuning-muda);border-color:var(--kuning)}
 
-/* ── BOTTOM FIXED ── */
-.bottom-fixed{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:8px 10px;display:flex;gap:6px;z-index:50}
-.btn-bot{flex:none;padding:10px 11px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);font-size:12px;font-weight:600;cursor:pointer;color:var(--text);display:flex;flex-direction:column;align-items:center;gap:2px;min-width:52px}
-.btn-bot svg{opacity:.7}
-.btn-simpan{flex:1;padding:11px;background:var(--hijau);color:#fff;border:none;border-radius:var(--radius);font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
-.btn-simpan:active{opacity:.85}
-.btn-simpan.loading{opacity:.7;pointer-events:none}
+/* BOTTOM FIXED */
+.bottom-fixed{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:10px 12px;display:flex;gap:8px;z-index:50}
+.btn-rekap{flex:none;padding:11px 14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);font-size:13px;font-weight:600;cursor:pointer;color:var(--text);display:flex;align-items:center;gap:5px}
+.btn-simpan{flex:1;padding:11px;background:var(--hijau);color:#fff;border:none;border-radius:var(--radius);font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:opacity 0.15s}
+.btn-simpan:active{opacity:0.85}
+.btn-simpan.loading{opacity:0.7;pointer-events:none}
 
-/* ── TOAST ── */
-.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(10px);background:#1a1a1a;color:#fff;padding:10px 18px;border-radius:24px;font-size:13px;opacity:0;transition:all .25s;pointer-events:none;z-index:200;white-space:nowrap;max-width:calc(100% - 32px);text-align:center}
+/* TOAST */
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(10px);background:#1a1a1a;color:#fff;padding:10px 18px;border-radius:24px;font-size:13px;opacity:0;transition:all 0.25s;pointer-events:none;z-index:200;white-space:nowrap;max-width:calc(100% - 32px);text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast.ok{background:var(--hijau)}
 .toast.err{background:var(--merah)}
 
-/* ── MODAL ── */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;align-items:flex-end;justify-content:center}
+/* MODAL OVERLAY */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:100;align-items:flex-end;justify-content:center}
 .modal-overlay.open{display:flex}
-.modal-center{align-items:center!important}
-.modal-box{background:#fff;border-radius:18px 18px 0 0;width:100%;max-width:480px;max-height:92vh;display:flex;flex-direction:column}
+.modal-box{background:#fff;border-radius:18px 18px 0 0;width:100%;max-width:480px;max-height:90vh;display:flex;flex-direction:column}
 .modal-head{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 12px;border-bottom:1px solid var(--border);flex-shrink:0}
 .modal-head h2{font-size:16px;font-weight:700}
 .modal-close{width:32px;height:32px;border-radius:50%;border:none;background:var(--bg);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;color:var(--text3)}
 .modal-body{padding:14px;overflow-y:auto;flex:1}
 
-/* ── REKAP HARIAN ── */
-.rtab-group{display:flex;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+/* REKAP */
+.rekap-tab{display:flex;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
 .rtab{flex:1;padding:8px 4px;font-size:12px;font-weight:600;border:none;background:#fff;cursor:pointer;color:var(--text3)}
 .rtab.active{background:var(--hijau);color:#fff}
 .rekap-summary{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
@@ -118,7 +113,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .rs-card .rnum{font-size:20px;font-weight:700}
 .rs-card .rlbl{font-size:11px;color:var(--text3);margin-top:2px}
 .rekap-table{width:100%;border-collapse:collapse;font-size:12px}
-.rekap-table th{text-align:left;padding:7px 8px;background:var(--bg);color:var(--text3);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.04em;position:sticky;top:0}
+.rekap-table th{text-align:left;padding:7px 8px;background:var(--bg);color:var(--text3);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.04em;position:sticky;top:0}
 .rekap-table td{padding:7px 8px;border-bottom:1px solid var(--border)}
 .rekap-table tr:last-child td{border-bottom:none}
 .badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700}
@@ -128,71 +123,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .bS{background:var(--kuning-muda);color:var(--kuning)}
 .btn-export{width:100%;margin-top:12px;padding:11px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);font-size:13px;font-weight:600;cursor:pointer;color:var(--text);display:flex;align-items:center;justify-content:center;gap:6px}
 
-/* ── REKAP PER SANTRI ── */
-.periode-nav{display:flex;align-items:center;justify-content:space-between;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 14px;margin-bottom:10px}
-.periode-nav button{background:none;border:none;cursor:pointer;font-size:20px;color:var(--text2);padding:0 2px;line-height:1}
-.periode-nav span{font-size:13px;font-weight:600;color:var(--text);text-align:center;flex:1}
-
-.rs-filter-row{display:flex;gap:6px;margin-bottom:10px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
-.rs-filter-row::-webkit-scrollbar{display:none}
-.rs-ftab{flex-shrink:0;padding:5px 12px;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:20px;background:#fff;cursor:pointer;color:var(--text3)}
-.rs-ftab.active{background:var(--hijau);border-color:var(--hijau);color:#fff}
-
-.sort-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.sort-row span{font-size:12px;color:var(--text3)}
-.sort-row select{font-size:12px;border:1px solid var(--border);border-radius:6px;padding:4px 8px;background:#fff;color:var(--text)}
-
-/* Kartu santri rekap */
-.rs-santri-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;overflow:hidden;box-shadow:var(--shadow)}
-.rs-santri-head{display:flex;align-items:center;gap:10px;padding:11px 12px;cursor:pointer}
-.rs-santri-head .av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;color:#fff}
-.rs-santri-head .inf{flex:1;min-width:0}
-.rs-santri-head .inf .nm{font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.rs-santri-head .inf .kl{font-size:11px;color:var(--text3);margin-top:1px}
-.rs-santri-head .pct-box{text-align:right;flex-shrink:0}
-.rs-santri-head .pct-num{font-size:18px;font-weight:700}
-.rs-santri-head .pct-lbl{font-size:10px;color:var(--text3)}
-.chevron{font-size:14px;color:var(--text3);flex-shrink:0;transition:transform .2s}
-.chevron.open{transform:rotate(180deg)}
-
-/* Mini stats bar */
-.mini-stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border)}
-.ms-item{padding:6px 4px;text-align:center;border-right:1px solid var(--border)}
-.ms-item:last-child{border-right:none}
-.ms-item .mn{font-size:14px;font-weight:700}
-.ms-item .ml{font-size:10px;color:var(--text3)}
-
-/* Detail kalender */
-.detail-panel{display:none;border-top:1px solid var(--border);padding:12px}
-.detail-panel.open{display:block}
-.detail-panel h4{font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
-.kal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
-.kal-lbl{font-size:9px;font-weight:600;color:var(--text3);text-align:center;padding:2px 0;text-transform:uppercase}
-.kal-day{aspect-ratio:1;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--text3);background:var(--bg)}
-.kal-day.kH{background:var(--hijau-muda);color:var(--hijau)}
-.kal-day.kA{background:var(--merah-muda);color:var(--merah)}
-.kal-day.kI{background:var(--biru-muda);color:var(--biru)}
-.kal-day.kS{background:var(--kuning-muda);color:var(--kuning)}
-.kal-day.kEmpty{background:transparent}
-
-/* Streak & catatan */
-.streak-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.streak-chip{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;background:var(--bg);border:1px solid var(--border)}
-
-/* Minggu detail — tabel per hari */
-.hari-list{margin-top:8px}
-.hari-row{display:flex;align-items:center;justify-content:space-between;padding:7px 4px;border-bottom:1px solid var(--border)}
-.hari-row:last-child{border-bottom:none}
-.hari-row .hr-lbl{font-size:12px;color:var(--text2)}
-.hari-row .hr-tgl{font-size:11px;color:var(--text3)}
-
-/* Summary atas rekap santri */
-.rs-top-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}
-.rst-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 4px;text-align:center;box-shadow:var(--shadow)}
-.rst-card .rn{font-size:16px;font-weight:700}
-.rst-card .rl{font-size:10px;color:var(--text3);margin-top:1px}
-
-/* Confirm box */
+/* KONFIRMASI HADIR SEMUA */
 .confirm-box{background:#fff;border-radius:14px;padding:20px;margin:12px;max-width:340px}
 .confirm-box h3{font-size:16px;font-weight:700;margin-bottom:8px}
 .confirm-box p{font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.5}
@@ -200,39 +131,48 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .btn-cancel{flex:1;padding:10px;background:var(--bg);border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer}
 .btn-confirm{flex:1;padding:10px;background:var(--hijau);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer}
 
-/* Koneksi */
+/* KONEKSI MODAL */
 .koneksi-form{display:flex;flex-direction:column;gap:12px}
 .koneksi-form label{font-size:12px;font-weight:600;color:var(--text2);margin-bottom:3px;display:block}
 .koneksi-form input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px}
 .koneksi-form .hint{font-size:11px;color:var(--text3);margin-top:4px;line-height:1.5}
-.btn-koneksi{width:100%;padding:12px;background:var(--hijau);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;margin-top:4px}
+.koneksi-form .btn-koneksi{width:100%;padding:12px;background:var(--hijau);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;margin-top:4px}
 .status-koneksi{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;font-size:13px;font-weight:500;margin-bottom:14px}
 .status-koneksi.connected{background:var(--hijau-muda);color:var(--hijau)}
 .status-koneksi.disconnected{background:var(--merah-muda);color:var(--merah)}
 .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.dot.on{background:var(--hijau2)}.dot.off{background:var(--merah)}
+.dot.on{background:var(--hijau2)}
+.dot.off{background:var(--merah)}
 
+/* PROG BAR */
+.prog-bar{height:3px;background:var(--hijau-muda);border-radius:2px;overflow:hidden;margin-bottom:10px}
+.prog-fill{height:100%;background:var(--hijau2);border-radius:2px;transition:width 0.3s}
+
+/* EMPTY */
 .empty{text-align:center;padding:32px 16px;color:var(--text3);font-size:13px}
 </style>
 </head>
 <body>
 
+<!-- TOP BAR -->
 <div class="topbar">
   <h1>🌙 Absensi Sholat Subuh</h1>
   <p id="nama-pesantren">Pesantren — Semua Kelas</p>
 </div>
 
+<!-- DATE BAR -->
 <div class="datebar">
   <div class="datebar-left">
     <div class="hari" id="hari-txt"></div>
     <div class="tgl" id="tgl-txt"></div>
   </div>
-  <div style="display:flex;align-items:center;gap:6px">
-    <label for="tgl-picker" style="font-size:12px;color:var(--text2)">📅</label>
+  <div class="datebar-right">
+    <label for="tgl-picker">📅</label>
     <input type="date" id="tgl-picker"/>
   </div>
 </div>
 
+<!-- STATUS STRIP -->
 <div class="status-strip">
   <div class="ss-item h"><div class="num" id="cnt-H">0</div><div class="lbl">✅ Hadir</div></div>
   <div class="ss-item a"><div class="num" id="cnt-A">0</div><div class="lbl">❌ Alfa</div></div>
@@ -240,19 +180,25 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="ss-item s"><div class="num" id="cnt-S">0</div><div class="lbl">🏥 Sakit</div></div>
 </div>
 
-<div class="prog-wrap">
-  <div class="prog-info"><span>Progress absensi</span><span id="prog-pct">0 / 70</span></div>
+<!-- PROGRESS BAR -->
+<div style="padding:0 12px 0;background:#fff;border-bottom:1px solid var(--border)">
+  <div style="font-size:11px;color:var(--text3);padding:5px 0 3px;display:flex;justify-content:space-between">
+    <span>Progress absensi</span>
+    <span id="prog-pct">0 / 70</span>
+  </div>
   <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
 </div>
 
+<!-- FILTER TABS -->
 <div class="filter-bar" id="filter-bar">
-  <button class="ftab active" data-kelas="Semua" onclick="filterKelas(this)">Semua (70)</button>
-  <button class="ftab" data-kelas="Kelas 1" onclick="filterKelas(this)">Kelas 1</button>
-  <button class="ftab" data-kelas="Kelas 2" onclick="filterKelas(this)">Kelas 2</button>
-  <button class="ftab" data-kelas="Kelas 3" onclick="filterKelas(this)">Kelas 3</button>
-  <button class="ftab" data-kelas="Kelas 4" onclick="filterKelas(this)">Kelas 4</button>
+  <button class="ftab active" data-kelas="Semua" onclick="filterKelas(this)">Semua (30)</button>
+  <button class="ftab" data-kelas="Lambatan D" onclick="filterKelas(this)">Lambatan D</button>
+  <button class="ftab" data-kelas="Lambatan D" onclick="filterKelas(this)">Lambatan D</button>
+  <button class="ftab" data-kelas="Lambatan B" onclick="filterKelas(this)">Lambatan B</button>
+  <button class="ftab" data-kelas="mix" onclick="filterKelas(this)">mix</button>
 </div>
 
+<!-- ACTIONS BAR -->
 <div class="actions-bar">
   <div class="search-wrap">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -264,21 +210,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </button>
 </div>
 
-<div class="list-wrap"><div id="list"></div></div>
+<!-- LIST -->
+<div class="list-wrap" id="list-wrap">
+  <div id="list"></div>
+</div>
 
 <!-- BOTTOM FIXED -->
 <div class="bottom-fixed">
-  <button class="btn-bot" onclick="bukaRekap()">
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-    <span style="font-size:10px">Harian</span>
+  <button class="btn-rekap" onclick="bukaRekap()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+    Rekap
   </button>
-  <button class="btn-bot" onclick="bukaRekapSantri()">
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-    <span style="font-size:10px">Per Santri</span>
-  </button>
-  <button class="btn-bot" onclick="bukaKoneksi()">
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
-    <span style="font-size:10px">Sheets</span>
+  <button class="btn-rekap" onclick="bukaKoneksi()" style="flex:none">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+    Sheets
   </button>
   <button class="btn-simpan" id="btn-simpan" onclick="simpanAbsensi()">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
@@ -286,13 +231,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </button>
 </div>
 
+<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- MODAL: HADIR SEMUA -->
-<div class="modal-overlay modal-center" id="modal-hadir-semua" onclick="if(event.target===this)this.classList.remove('open')">
+<!-- MODAL: KONFIRMASI HADIR SEMUA -->
+<div class="modal-overlay" id="modal-hadir-semua" style="align-items:center;justify-content:center" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="confirm-box">
     <h3>✅ Hadir Semua?</h3>
-    <p id="konfirm-text"></p>
+    <p id="konfirm-text">Tandai semua <strong>30 santri</strong> sebagai <strong>Hadir</strong> untuk hari ini?<br/><br/>Status yang sudah diisi sebelumnya akan diganti.</p>
     <div class="confirm-btns">
       <button class="btn-cancel" onclick="document.getElementById('modal-hadir-semua').classList.remove('open')">Batal</button>
       <button class="btn-confirm" onclick="hadirSemua()">Ya, Hadir Semua</button>
@@ -300,82 +246,30 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 </div>
 
-<!-- MODAL: REKAP HARIAN -->
+<!-- MODAL: REKAP -->
 <div class="modal-overlay" id="modal-rekap" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal-box">
     <div class="modal-head">
-      <h2>📊 Rekap Harian</h2>
+      <h2>📊 Rekap Absensi</h2>
       <button class="modal-close" onclick="document.getElementById('modal-rekap').classList.remove('open')">✕</button>
     </div>
     <div class="modal-body">
-      <div class="rtab-group">
+      <div class="rekap-tab">
         <button class="rtab active" onclick="switchRekap('minggu',this)">Minggu Ini</button>
         <button class="rtab" onclick="switchRekap('bulan',this)">Bulan Ini</button>
         <button class="rtab" onclick="switchRekap('tahun',this)">Tahun Ini</button>
         <button class="rtab" onclick="switchRekap('semua',this)">Semua</button>
       </div>
       <div id="rekap-content"></div>
-      <button class="btn-export" onclick="exportCSV('harian')">
+      <button class="btn-export" onclick="exportCSV()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Export CSV — Rekap Harian
+        Export CSV (Excel / Google Sheets)
       </button>
     </div>
   </div>
 </div>
 
-<!-- MODAL: REKAP PER SANTRI -->
-<div class="modal-overlay" id="modal-santri" onclick="if(event.target===this)this.classList.remove('open')">
-  <div class="modal-box">
-    <div class="modal-head">
-      <h2>👤 Rekap Per Santri</h2>
-      <button class="modal-close" onclick="document.getElementById('modal-santri').classList.remove('open')">✕</button>
-    </div>
-    <div class="modal-body">
-      <!-- Mode: minggu / bulan / tahun -->
-      <div class="rtab-group">
-        <button class="rtab active" onclick="switchRS('minggu',this)">Minggu</button>
-        <button class="rtab" onclick="switchRS('bulan',this)">Bulan</button>
-        <button class="rtab" onclick="switchRS('tahun',this)">Tahun</button>
-      </div>
-      <!-- Navigasi periode -->
-      <div class="periode-nav" id="rs-periode-nav">
-        <button onclick="navigasiPeriode(-1)">&#8249;</button>
-        <span id="rs-periode-label">—</span>
-        <button onclick="navigasiPeriode(1)">&#8250;</button>
-      </div>
-      <!-- Filter kelas -->
-      <div class="rs-filter-row" id="rs-filter-row">
-        <button class="rs-ftab active" data-kelas="Semua" onclick="rsFilterKelas(this)">Semua Kelas</button>
-        <button class="rs-ftab" data-kelas="Lambatan D" onclick="rsFilterKelas(this)">Lambatan D</button>
-        <button class="rs-ftab" data-kelas="Lambatan C" onclick="rsFilterKelas(this)">Lambatan C</button>
-        <button class="rs-ftab" data-kelas="Lambatan B" onclick="rsFilterKelas(this)">Lambatan B</button>
-        <button class="rs-ftab" data-kelas="Mix" onclick="rsFilterKelas(this)">Mix</button>
-      </div>
-      <!-- Sort -->
-      <div class="sort-row">
-        <span id="rs-total-info">30 santri</span>
-        <select id="rs-sort" onchange="renderRekapSantri()">
-          <option value="nama">Urut: Nama A-Z</option>
-          <option value="hadir-asc">Hadir ↑ (terendah)</option>
-          <option value="hadir-desc">Hadir ↓ (tertinggi)</option>
-          <option value="alfa-desc">Alfa ↑ (terbanyak)</option>
-          <option value="kelas">Urut: Kelas</option>
-        </select>
-      </div>
-      <!-- Summary keseluruhan periode -->
-      <div class="rs-top-summary" id="rs-top-summary"></div>
-      <!-- List santri -->
-      <div id="rs-list"></div>
-      <!-- Export -->
-      <button class="btn-export" onclick="exportCSV('santri')" style="margin-top:8px">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Export CSV — Rekap Per Santri
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL: KONEKSI SHEETS -->
+<!-- MODAL: KONEKSI GOOGLE SHEETS -->
 <div class="modal-overlay" id="modal-koneksi" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal-box">
     <div class="modal-head">
@@ -386,13 +280,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div id="status-koneksi-ui"></div>
       <div class="koneksi-form">
         <div>
-          <label>URL Google Apps Script</label>
-          <input type="url" id="script-url" placeholder="https://script.google.com/macros/s/xxxxx/exec"/>
-          <div class="hint">📖 Lihat PANDUAN_SETUP.md untuk cara mendapatkan URL ini.</div>
+          <label>URL Google Apps Script (Web App URL)</label>
+          <input type="url" id="script-url" placeholder="https://script.google.com/macros/s/xxxxx/exec" />
+          <div class="hint">📖 Baca panduan <strong>PANDUAN_SETUP.md</strong> untuk cara mendapatkan URL ini.</div>
         </div>
         <div>
           <label>Nama Pesantren (opsional)</label>
-          <input type="text" id="inp-nama-pesantren" placeholder="Pesantren "/>
+          <input type="text" id="inp-nama-pesantren" placeholder="Pesantren Darul Ilmi" />
         </div>
         <button class="btn-koneksi" onclick="simpanKoneksi()">💾 Simpan & Test Koneksi</button>
         <button onclick="testKoneksi()" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;background:#fff">🔄 Test Koneksi</button>
@@ -402,79 +296,80 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 
 <script>
-// ================================================================
-// DAFTAR SANTRI — EDIT SESUAI DATA ASLI
-// ================================================================
+// ============================================================
+// DATA SANTRI — EDIT SESUAI DAFTAR ASLI
+// Ganti nama-nama di bawah ini dengan nama santri yang sebenarnya
+// ============================================================
 const DAFTAR_SANTRI = [
- // KELAS Lambatan D (11 santri)
-  { id: 1, nama: "Allesandro Lorenti Jompang", kelas: "Lambatan D" },
-  { id: 2, nama: "Emir Nayyotama Suprapto", kelas: "Lambatan D" },
-  { id: 3, nama: "Fadlan Maulana Apriyandi", kelas: "Lambatan D" },
-  { id: 4, nama: "Ferdy Zaidan Nurhaj", kelas: "Lambatan D" },
-  { id: 5, nama: "Feri Juansyah", kelas: "Lambatan D" },
-  { id: 6, nama: "Hadil Mahasin Ibad ", kelas: "Lambatan D" },
-  { id: 7, nama: "Marcel Dwi Sakti", kelas: "Lambatan D" },
-  { id: 8, nama: "Muhammad Farhan Dewanto", kelas: "Lambatan D" },
-  { id: 9, nama: "Muh. Redyansa", kelas: "Lambatan D" },
-  { id: 10, nama: "Radhika Adhitya Arifin", kelas: "Lambatan D" },
-  { id: 11, nama: "Yusran Luky Ardana", kelas: "Lambatan D" },
-
+  // KELAS Lambatan D (11 santri)
+  {id:1, nama:"Allesandro Lorenti Jompang", kelas:"Lambatan D"},
+  {id:2, nama:"Emir Nayyotama Suprapto", kelas:"Lambatan D"},
+  {id:3, nama:"Fadlan Maulana Apriyandi", kelas:"Lambatan D"},
+  {id:4, nama:"Ferdy Zaidan Nurhaj", kelas:"Lambatan D"},
+  {id:5, nama:"Feri Juansyah", kelas:"Lambatan D"},
+  {id:6, nama:"Hadil Mahasin Ibad ", kelas:"Lambatan D"},
+  {id:7, nama:"Marcel Dwi Sakti", kelas:"Lambatan D"},
+  {id:8, nama:"Muhammad Farhan Dewanto", kelas:"Lambatan D"},
+  {id:9, nama:"Muh. Redyansa", kelas:"Lambatan D"},
+  {id:10, nama:"Radhika Adhitya Arifin", kelas:"Lambatan D"},
+  {id:11, nama:"Yusran Luky Ardana", kelas:"Lambatan D"},
+ 
   // KELAS Lambatan C (7 santri)
-  { id: 12, nama: "Alfauzansyah", kelas: "Lambatan C" },
-  { id: 13, nama: "Fawaz Shandy Aulia", kelas: "Lambatan C" },
-  { id: 14, nama: "Muhammad Asadin Nur", kelas: "Lambatan C" },
-  { id: 15, nama: "M. Septian Ramadhoni", kelas: "Lambatan C" },
-  { id: 16, nama: "Nafian Sulton Aulia", kelas: "Lambatan C" },
-  { id: 17, nama: "Rifki Wahyu S.", kelas: "Lambatan C" },
-  { id: 18, nama: "Zakki Alfin", kelas: "Lambatan C" },
-
+  {id:12, nama:"Alfauzansyah", kelas:"Lambatan C"},
+  {id:13, nama:"Fawaz Shandy Aulia", kelas:"Lambatan C"},
+  {id:14, nama:"Muhammad Asadin Nur", kelas:"Lambatan C"},
+  {id:15, nama:"M. Septian Ramadhoni", kelas:"Lambatan C"},
+  {id:16, nama:"Nafian Sulton Aulia", kelas:"Lambatan C"},
+  {id:17, nama:"Rifki Wahyu S.", kelas:"Lambatan C"},
+  {id:18, nama:"Zakki Alfin", kelas:"Lambatan C"},
+  
 
   // KELAS Lambatan B (4 santri)
-  { id: 19, nama: "Goby Fairuz Arroyan Sunandinata", kelas: "Lambatan B" },
-  { id: 20, nama: "Said Gufroni Danur Wenda", kelas: "Lambatan B" },
-  { id: 21, nama: "Utbah Abdul Faqih", kelas: "Lambatan B" },
-  { id: 22, nama: "Zulham Putra P.", kelas: "Lambatan B" },
-
+  {id:19, nama:"Goby Fairuz Arroyan Sunandinata", kelas:"Lambatan B"},
+  {id:20, nama:"Said Gufroni Danur Wenda", kelas:"Lambatan B"},
+  {id:21, nama:"Utbah Abdul Faqih", kelas:"Lambatan B"},
+  {id:22, nama:"Zulham Putra P.", kelas:"Lambatan B"},
+  
   // KELAS MIX (8 santri)
-  { id: 23, nama: "Arief Triono", kelas: "mix" },
-  { id: 24, nama: "Arka Fauzan", kelas: "mix" },
-  { id: 25, nama: "Ilham Paku Jagad", kelas: "mix" },
-  { id: 26, nama: "Ovan Nathan Mahesa", kelas: "mix" },
-  { id: 27, nama: "Raiyandito Aisy Yahya", kelas: "mix" },
-  { id: 28, nama: "Ubaidillah Khoiri", kelas: "mix" },
-  { id: 29, nama: "Willy Wildan Sholihan", kelas: "mix" },
-  { id: 30, nama: "Yoga Tri Saputra", kelas: "mix" },
-
+  {id:23, nama:"Arief Triono", kelas:"mix"},
+  {id:24, nama:"Arka Fauzan", kelas:"mix"},
+  {id:25, nama:"Ilham Paku Jagad", kelas:"mix"},
+  {id:26, nama:"Ovan Nathan Mahesa", kelas:"mix"},
+  {id:27, nama:"Raiyandito Aisy Yahya", kelas:"mix"},
+  {id:28, nama:"Ubaidillah Khoiri", kelas:"mix"},
+  {id:29, nama:"Willy Wildan Sholihan", kelas:"mix"},
+  {id:30, nama:"Yoga Tri Saputra", kelas:"mix"},
+ 
 ];
-const KELAS_COLOR = {"Lambatan D":"#0a5c44","Lambatan C":"#1a6fa8","Lambatan B":"#8B3A62","Mix":"#b07800"};
-const BL = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
-const BL_PANJANG = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
-const HARI_NAMA = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
-const ST_LABEL = {H:'Hadir',A:'Alfa',I:'Izin',S:'Sakit'};
 
-// ================================================================
+// ============================================================
+// WARNA KELAS
+// ============================================================
+const KELAS_COLOR = {
+  "Lambatan D": "#0a5c44",
+  "Lambatan D": "#1a6fa8",
+  "Lambatan B": "#8B3A62",
+  "mix": "#b07800",
+};
+
+// ============================================================
 // STATE
-// ================================================================
-let absensi = {};
-let savedData = {};
-let filterAktif = 'Semua';
-let rekapMode = 'minggu';
-let scriptURL = '';
-let namaPesantren = 'Pesantren — Semua Kelas';
+// ============================================================
+let absensi = {};       // {id: 'H'|'A'|'I'|'S'}
+let savedData = {};     // {tanggal: {id: status}}
+let filterAktif = "Semua";
+let rekapMode = "minggu";
+let scriptURL = "";
+let namaPesantren = "Pesantren — Semua Kelas";
 
-// Rekap Santri state
-let rsMode = 'minggu';          // minggu | bulan | tahun
-let rsPeriodeOffset = 0;        // 0 = sekarang, -1 = kemarin dst
-let rsKelasFilter = 'Semua';
-let rsOpenCard = null;          // id santri yang sedang dibuka
-
-// ================================================================
+// ============================================================
 // INIT
-// ================================================================
-window.onload = () => {
+// ============================================================
+window.onload = function(){
   muatStorage();
+  const today = todayStr();
   const picker = document.getElementById('tgl-picker');
-  picker.value = todayStr();
+  picker.value = today;
   picker.addEventListener('change', gantiTanggal);
   updateTanggalDisplay();
   renderList();
@@ -488,9 +383,11 @@ function muatStorage(){
     scriptURL = localStorage.getItem('script_url') || '';
     namaPesantren = localStorage.getItem('nama_pesantren') || 'Pesantren — Semua Kelas';
     document.getElementById('nama-pesantren').textContent = namaPesantren;
-    document.getElementById('inp-nama-pesantren').value = namaPesantren.replace(' — Semua Kelas','');
+    document.getElementById('inp-nama-pesantren').value = namaPesantren === 'Pesantren — Semua Kelas' ? '' : namaPesantren;
     if(scriptURL) document.getElementById('script-url').value = scriptURL;
-    absensi = savedData[todayStr()] ? {...savedData[todayStr()]} : {};
+    // Muat absensi hari ini jika ada
+    const today = todayStr();
+    absensi = savedData[today] ? {...savedData[today]} : {};
   } catch(e){ savedData = {}; }
 }
 
@@ -498,10 +395,12 @@ function simpanStorage(){
   try { localStorage.setItem('absensi_data', JSON.stringify(savedData)); } catch(e){}
 }
 
-// ================================================================
-// TANGGAL HELPERS
-// ================================================================
-function todayStr(){ return new Date().toISOString().split('T')[0]; }
+// ============================================================
+// TANGGAL
+// ============================================================
+function todayStr(){
+  return new Date().toISOString().split('T')[0];
+}
 
 function gantiTanggal(){
   updateTanggalDisplay();
@@ -512,501 +411,352 @@ function gantiTanggal(){
 
 function updateTanggalDisplay(){
   const tgl = document.getElementById('tgl-picker').value;
-  const d = new Date(tgl+'T00:00:00');
-  document.getElementById('hari-txt').textContent = HARI_NAMA[d.getDay()];
-  document.getElementById('tgl-txt').textContent = d.getDate()+' '+BL_PANJANG[d.getMonth()]+' '+d.getFullYear();
+  const d = new Date(tgl + 'T00:00:00');
+  const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  document.getElementById('hari-txt').textContent = hari[d.getDay()];
+  document.getElementById('tgl-txt').textContent = d.getDate() + ' ' + bulan[d.getMonth()] + ' ' + d.getFullYear();
 }
 
-// ================================================================
-// ABSENSI UTAMA
-// ================================================================
+// ============================================================
+// FILTER KELAS
+// ============================================================
 function filterKelas(el){
-  document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
   el.classList.add('active');
   filterAktif = el.dataset.kelas;
   renderList();
 }
 
+// ============================================================
+// HADIR SEMUA
+// ============================================================
 function konfirmasiHadirSemua(){
-  const target = filterAktif==='Semua' ? DAFTAR_SANTRI : DAFTAR_SANTRI.filter(s=>s.kelas===filterAktif);
-  const aktif = filterAktif==='Semua' ? 'semua santri' : 'santri '+filterAktif;
+  const aktif = filterAktif === 'Semua' ? 'semua santri' : 'santri ' + filterAktif;
+  const jumlah = filterAktif === 'Semua' ? DAFTAR_SANTRI.length :
+    DAFTAR_SANTRI.filter(s => s.kelas === filterAktif).length;
   document.getElementById('konfirm-text').innerHTML =
-    `Tandai <strong>${target.length} ${aktif}</strong> sebagai <strong>Hadir ✅</strong>?<br/><br/>Status yang sudah diisi akan diganti.`;
+    `Tandai <strong>${jumlah} ${aktif}</strong> sebagai <strong>Hadir ✅</strong> untuk hari ini?<br/><br/>Status yang sudah diisi sebelumnya akan diganti.`;
   document.getElementById('modal-hadir-semua').classList.add('open');
 }
 
 function hadirSemua(){
-  const target = filterAktif==='Semua' ? DAFTAR_SANTRI : DAFTAR_SANTRI.filter(s=>s.kelas===filterAktif);
-  target.forEach(s => { absensi[s.id]='H'; });
+  const target = filterAktif === 'Semua' ? DAFTAR_SANTRI :
+    DAFTAR_SANTRI.filter(s => s.kelas === filterAktif);
+  target.forEach(s => { absensi[s.id] = 'H'; });
   document.getElementById('modal-hadir-semua').classList.remove('open');
   renderList();
-  showToast('✅ '+(filterAktif==='Semua'?'Semua santri':'Semua '+filterAktif)+' ditandai Hadir','ok');
+  const txt = filterAktif === 'Semua' ? 'Semua santri' : 'Semua santri ' + filterAktif;
+  showToast('✅ ' + txt + ' ditandai Hadir', 'ok');
 }
 
+// ============================================================
+// RENDER LIST
+// ============================================================
 function renderList(){
   const cari = document.getElementById('cari').value.toLowerCase().trim();
   const listEl = document.getElementById('list');
-  const filtered = DAFTAR_SANTRI.filter(s=>{
-    const ok = filterAktif==='Semua' || s.kelas===filterAktif;
-    const cok = !cari || s.nama.toLowerCase().includes(cari) || s.kelas.toLowerCase().includes(cari);
-    return ok && cok;
+
+  const filtered = DAFTAR_SANTRI.filter(s => {
+    const kelasOk = filterAktif === 'Semua' || s.kelas === filterAktif;
+    const cariOk = !cari || s.nama.toLowerCase().includes(cari) || s.kelas.toLowerCase().includes(cari);
+    return kelasOk && cariOk;
   });
-  if(!filtered.length){ listEl.innerHTML='<div class="empty">🔍 Tidak ada santri ditemukan</div>'; updateStats(); return; }
-  let html='', prevKelas='';
-  filtered.forEach(s=>{
-    if(s.kelas!==prevKelas){
-      const jml = DAFTAR_SANTRI.filter(x=>x.kelas===s.kelas).length;
-      const sudah = DAFTAR_SANTRI.filter(x=>x.kelas===s.kelas&&absensi[x.id]).length;
-      html+=`<div class="kelas-header"><span style="color:${KELAS_COLOR[s.kelas]}">${s.kelas}</span><small>${sudah}/${jml} diisi</small></div>`;
-      prevKelas=s.kelas;
+
+  if(!filtered.length){
+    listEl.innerHTML = '<div class="empty">🔍 Tidak ada santri ditemukan</div>';
+    updateStats();
+    return;
+  }
+
+  let html = '';
+  let prevKelas = '';
+  filtered.forEach(s => {
+    if(s.kelas !== prevKelas){
+      const jml = DAFTAR_SANTRI.filter(x => x.kelas === s.kelas).length;
+      const sudah = DAFTAR_SANTRI.filter(x => x.kelas === s.kelas && absensi[x.id]).length;
+      html += `<div class="kelas-header">
+        <span style="color:${KELAS_COLOR[s.kelas]}">${s.kelas}</span>
+        <small>${sudah}/${jml} diisi</small>
+      </div>`;
+      prevKelas = s.kelas;
     }
-    const st = absensi[s.id]||'';
-    const stCls = {H:'h',A:'a',I:'i',S:'s'}[st]||'';
-    const ini = s.nama.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
-    html+=`<div class="santri-card ${stCls}" id="card-${s.id}">
-      <div class="avatar" style="background:${KELAS_COLOR[s.kelas]}">${ini}</div>
-      <div class="santri-info"><div class="nama">${s.nama}</div><div class="klabel">${s.kelas}</div></div>
+    const st = absensi[s.id] || '';
+    const stClass = {H:'h',A:'a',I:'i',S:'s'}[st] || '';
+    const warna = KELAS_COLOR[s.kelas] || '#555';
+    const inisial = s.nama.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
+    html += `<div class="santri-card ${stClass}" id="card-${s.id}">
+      <div class="avatar" style="background:${warna}">${inisial}</div>
+      <div class="santri-info">
+        <div class="nama">${s.nama}</div>
+        <div class="klabel">${s.kelas}</div>
+      </div>
       <div class="status-btns">
-        <button class="sbtn ${st==='H'?'on':''}" data-st="H" onclick="setStatus(${s.id},'H')">✅</button>
-        <button class="sbtn ${st==='A'?'on':''}" data-st="A" onclick="setStatus(${s.id},'A')">❌</button>
-        <button class="sbtn ${st==='I'?'on':''}" data-st="I" onclick="setStatus(${s.id},'I')">📋</button>
-        <button class="sbtn ${st==='S'?'on':''}" data-st="S" onclick="setStatus(${s.id},'S')">🏥</button>
+        <button class="sbtn ${st==='H'?'on':''}" data-st="H" onclick="setStatus(${s.id},'H')" title="Hadir">✅</button>
+        <button class="sbtn ${st==='A'?'on':''}" data-st="A" onclick="setStatus(${s.id},'A')" title="Alfa">❌</button>
+        <button class="sbtn ${st==='I'?'on':''}" data-st="I" onclick="setStatus(${s.id},'I')" title="Izin">📋</button>
+        <button class="sbtn ${st==='S'?'on':''}" data-st="S" onclick="setStatus(${s.id},'S')" title="Sakit">🏥</button>
       </div>
     </div>`;
   });
-  listEl.innerHTML=html;
+
+  listEl.innerHTML = html;
   updateStats();
 }
 
 function setStatus(id, st){
-  absensi[id] = absensi[id]===st ? '' : st;
+  absensi[id] = absensi[id] === st ? '' : st;
   if(!absensi[id]) delete absensi[id];
-  const card = document.getElementById('card-'+id);
+  // Update card tanpa full re-render (lebih cepat di HP)
+  const card = document.getElementById('card-' + id);
   if(card){
-    card.className = 'santri-card '+({H:'h',A:'a',I:'i',S:'s'}[absensi[id]]||'');
-    card.querySelectorAll('.sbtn').forEach(btn=>btn.classList.toggle('on', btn.dataset.st===absensi[id]));
+    card.className = 'santri-card ' + ({H:'h',A:'a',I:'i',S:'s'}[absensi[id]]||'');
+    card.querySelectorAll('.sbtn').forEach(btn => {
+      btn.classList.toggle('on', btn.dataset.st === absensi[id]);
+    });
   }
   updateStats();
 }
 
 function updateStats(){
   const vals = Object.values(absensi);
-  ['H','A','I','S'].forEach(st=>{ document.getElementById('cnt-'+st).textContent=vals.filter(v=>v===st).length; });
+  ['H','A','I','S'].forEach(st => {
+    document.getElementById('cnt-'+st).textContent = vals.filter(v=>v===st).length;
+  });
   const total = DAFTAR_SANTRI.length;
   const isi = Object.keys(absensi).filter(id=>absensi[id]).length;
-  document.getElementById('prog-pct').textContent = isi+' / '+total;
-  document.getElementById('prog-fill').style.width = Math.round(isi/total*100)+'%';
+  document.getElementById('prog-pct').textContent = isi + ' / ' + total;
+  document.getElementById('prog-fill').style.width = Math.round(isi/total*100) + '%';
 }
 
-// ================================================================
-// SIMPAN & KIRIM SHEETS
-// ================================================================
+// ============================================================
+// SIMPAN ABSENSI
+// ============================================================
 async function simpanAbsensi(){
   const tgl = document.getElementById('tgl-picker').value;
   savedData[tgl] = {...absensi};
   simpanStorage();
+
+  const total = DAFTAR_SANTRI.length;
+  const isi = Object.keys(absensi).filter(id=>absensi[id]).length;
   const H = Object.values(absensi).filter(v=>v==='H').length;
+
   if(scriptURL){
     await kirimKeSheets(tgl);
   } else {
-    showToast(`💾 Tersimpan! ${H} hadir dari ${DAFTAR_SANTRI.length} santri`,'ok');
+    showToast(`💾 Tersimpan! ${H} hadir dari ${total} santri`, 'ok');
   }
 }
 
+// ============================================================
+// GOOGLE SHEETS INTEGRATION
+// ============================================================
 async function kirimKeSheets(tgl){
   const btn = document.getElementById('btn-simpan');
-  btn.classList.add('loading'); btn.textContent='⏳ Mengirim...';
-  const rows = DAFTAR_SANTRI.map(s=>({tanggal:tgl,nama:s.nama,kelas:s.kelas,status:absensi[s.id]||'',status_label:ST_LABEL[absensi[s.id]]||'Belum diisi'}));
+  btn.classList.add('loading');
+  btn.innerHTML = '⏳ Mengirim...';
+
+  const rows = DAFTAR_SANTRI.map(s => ({
+    tanggal: tgl,
+    nama: s.nama,
+    kelas: s.kelas,
+    status: absensi[s.id] || 'Belum diisi',
+    status_label: {H:'Hadir',A:'Alfa',I:'Izin',S:'Sakit'}[absensi[s.id]] || 'Belum diisi'
+  }));
+
   try {
-    await fetch(scriptURL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'simpan',tanggal:tgl,data:rows})});
-    showToast('✅ Tersimpan & terkirim ke Google Sheets!','ok');
-  } catch(e){ showToast('⚠️ Tersimpan lokal. Gagal kirim ke Sheets.',''); }
+    await fetch(scriptURL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({action:'simpan', tanggal:tgl, data:rows})
+    });
+    showToast('✅ Tersimpan & terkirim ke Google Sheets!', 'ok');
+  } catch(e){
+    showToast('⚠️ Tersimpan lokal. Gagal kirim ke Sheets.', '');
+  }
+
   btn.classList.remove('loading');
-  btn.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Simpan Absensi';
+  btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Simpan Absensi`;
 }
 
-// ================================================================
-// REKAP HARIAN
-// ================================================================
+// ============================================================
+// REKAP
+// ============================================================
 function bukaRekap(){
   document.getElementById('modal-rekap').classList.add('open');
   tampilkanRekap();
 }
 
 function switchRekap(mode, el){
-  document.querySelectorAll('#modal-rekap .rtab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.rtab').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
   rekapMode = mode;
   tampilkanRekap();
 }
 
-function getDatesByMode(mode, offset=0){
-  const all = Object.keys(savedData).sort();
+function filterTanggalRekap(dates){
   const now = new Date();
-  if(mode==='minggu'){
+  if(rekapMode === 'minggu'){
     const day = now.getDay();
     const senin = new Date(now);
-    senin.setDate(now.getDate()-(day===0?6:day-1) + offset*7);
+    senin.setDate(now.getDate() - (day===0?6:day-1));
     senin.setHours(0,0,0,0);
-    const minggu = new Date(senin); minggu.setDate(senin.getDate()+6);
-    return all.filter(d=>{ const dt=new Date(d+'T00:00:00'); return dt>=senin&&dt<=minggu; });
+    return dates.filter(d => new Date(d+'T00:00:00') >= senin);
   }
-  if(mode==='bulan'){
-    const dt = new Date(now.getFullYear(), now.getMonth()+offset, 1);
-    const key = dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0');
-    return all.filter(d=>d.startsWith(key));
+  if(rekapMode === 'bulan'){
+    const bln = now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+    return dates.filter(d => d.startsWith(bln));
   }
-  if(mode==='tahun'){
-    const yr = now.getFullYear()+offset;
-    return all.filter(d=>d.startsWith(String(yr)));
+  if(rekapMode === 'tahun'){
+    return dates.filter(d => d.startsWith(String(now.getFullYear())));
   }
-  return all;
+  return dates;
 }
 
 function tampilkanRekap(){
-  const dates = getDatesByMode(rekapMode).sort().reverse();
+  const allDates = Object.keys(savedData).sort().reverse();
+  const dates = filterTanggalRekap(allDates);
   const el = document.getElementById('rekap-content');
-  if(!dates.length){ el.innerHTML='<div class="empty">📭 Belum ada data untuk periode ini</div>'; return; }
-  const allVals = dates.flatMap(d=>Object.values(savedData[d]||{}));
-  const totH=allVals.filter(v=>v==='H').length, totA=allVals.filter(v=>v==='A').length;
-  const totI=allVals.filter(v=>v==='I').length, totS=allVals.filter(v=>v==='S').length;
-  let html=`<div class="rekap-summary">
+
+  if(!dates.length){
+    el.innerHTML = '<div class="empty">📭 Belum ada data untuk periode ini</div>';
+    return;
+  }
+
+  const allVals = dates.flatMap(d => Object.values(savedData[d] || {}));
+  const totH = allVals.filter(v=>v==='H').length;
+  const totA = allVals.filter(v=>v==='A').length;
+  const totI = allVals.filter(v=>v==='I').length;
+  const totS = allVals.filter(v=>v==='S').length;
+
+  const bl = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+
+  let html = `<div class="rekap-summary">
     <div class="rs-card"><div class="rnum" style="color:var(--hijau2)">${totH}</div><div class="rlbl">Total Hadir</div></div>
     <div class="rs-card"><div class="rnum" style="color:var(--merah)">${totA}</div><div class="rlbl">Total Alfa</div></div>
     <div class="rs-card"><div class="rnum" style="color:var(--biru)">${totI}</div><div class="rlbl">Total Izin</div></div>
     <div class="rs-card"><div class="rnum" style="color:var(--kuning)">${totS}</div><div class="rlbl">Total Sakit</div></div>
   </div>
   <div style="font-size:11px;color:var(--text3);margin-bottom:8px">${dates.length} hari tercatat</div>
-  <div style="overflow-x:auto"><table class="rekap-table">
-    <thead><tr><th>Tanggal</th><th>✅ H</th><th>❌ A</th><th>📋 I</th><th>🏥 S</th><th>%</th></tr></thead><tbody>`;
-  dates.forEach(d=>{
-    const v=Object.values(savedData[d]||{});
-    const H=v.filter(x=>x==='H').length,A=v.filter(x=>x==='A').length,I=v.filter(x=>x==='I').length,S=v.filter(x=>x==='S').length;
-    const pct=Math.round(H/DAFTAR_SANTRI.length*100);
-    const dt=new Date(d+'T00:00:00');
-    html+=`<tr><td style="font-weight:600">${dt.getDate()+' '+BL[dt.getMonth()]}</td>
-      <td><span class="badge bH">${H}</span></td><td><span class="badge bA">${A}</span></td>
-      <td><span class="badge bI">${I}</span></td><td><span class="badge bS">${S}</span></td>
-      <td style="font-size:12px;color:${pct>=80?'var(--hijau2)':'var(--merah)'}">${pct}%</td></tr>`;
-  });
-  html+=`</tbody></table></div>`;
-  el.innerHTML=html;
-}
+  <div style="overflow-x:auto">
+  <table class="rekap-table">
+    <thead><tr><th>Tanggal</th><th>✅ H</th><th>❌ A</th><th>📋 I</th><th>🏥 S</th><th>%</th></tr></thead>
+    <tbody>`;
 
-// ================================================================
-// REKAP PER SANTRI
-// ================================================================
-function bukaRekapSantri(){
-  rsMode='minggu'; rsPeriodeOffset=0; rsKelasFilter='Semua'; rsOpenCard=null;
-  document.querySelectorAll('#modal-santri .rtab').forEach((b,i)=>b.classList.toggle('active',i===0));
-  document.querySelectorAll('.rs-ftab').forEach((b,i)=>b.classList.toggle('active',i===0));
-  document.getElementById('modal-santri').classList.add('open');
-  renderRekapSantri();
-}
-
-function switchRS(mode, el){
-  document.querySelectorAll('#modal-santri .rtab').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-  rsMode=mode; rsPeriodeOffset=0; rsOpenCard=null;
-  renderRekapSantri();
-}
-
-function navigasiPeriode(delta){
-  rsPeriodeOffset+=delta; rsOpenCard=null;
-  renderRekapSantri();
-}
-
-function rsFilterKelas(el){
-  document.querySelectorAll('.rs-ftab').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-  rsKelasFilter=el.dataset.kelas; rsOpenCard=null;
-  renderRekapSantri();
-}
-
-function getPeriodeLabel(){
-  const now = new Date();
-  if(rsMode==='minggu'){
-    const day=now.getDay();
-    const senin=new Date(now);
-    senin.setDate(now.getDate()-(day===0?6:day-1)+rsPeriodeOffset*7);
-    senin.setHours(0,0,0,0);
-    const minggu=new Date(senin); minggu.setDate(senin.getDate()+6);
-    const f=d=>`${d.getDate()} ${BL[d.getMonth()]} ${d.getFullYear()}`;
-    const suffix = rsPeriodeOffset===0?' (Ini)':rsPeriodeOffset===-1?' (Lalu)':'';
-    return `${f(senin)} – ${f(minggu)}${suffix}`;
-  }
-  if(rsMode==='bulan'){
-    const dt=new Date(now.getFullYear(),now.getMonth()+rsPeriodeOffset,1);
-    const suffix=rsPeriodeOffset===0?' (Ini)':'';
-    return BL_PANJANG[dt.getMonth()]+' '+dt.getFullYear()+suffix;
-  }
-  if(rsMode==='tahun'){
-    const yr=now.getFullYear()+rsPeriodeOffset;
-    const suffix=rsPeriodeOffset===0?' (Ini)':'';
-    return 'Tahun '+yr+suffix;
-  }
-}
-
-function renderRekapSantri(){
-  document.getElementById('rs-periode-label').textContent = getPeriodeLabel();
-  const dates = getDatesByMode(rsMode, rsPeriodeOffset);
-  const totalHari = dates.length;
-
-  // Hitung statistik tiap santri
-  const target = rsKelasFilter==='Semua' ? DAFTAR_SANTRI : DAFTAR_SANTRI.filter(s=>s.kelas===rsKelasFilter);
-
-  const sortVal = document.getElementById('rs-sort').value;
-  let list = target.map(s=>{
-    const H=dates.filter(d=>savedData[d]&&savedData[d][s.id]==='H').length;
-    const A=dates.filter(d=>savedData[d]&&savedData[d][s.id]==='A').length;
-    const I=dates.filter(d=>savedData[d]&&savedData[d][s.id]==='I').length;
-    const S=dates.filter(d=>savedData[d]&&savedData[d][s.id]==='S').length;
-    const pct = totalHari>0 ? Math.round(H/totalHari*100) : 0;
-    return {...s,H,A,I,S,pct,totalHari};
+  dates.forEach(d => {
+    const v = Object.values(savedData[d] || {});
+    const H = v.filter(x=>x==='H').length;
+    const A = v.filter(x=>x==='A').length;
+    const I = v.filter(x=>x==='I').length;
+    const S = v.filter(x=>x==='S').length;
+    const total = DAFTAR_SANTRI.length;
+    const pct = Math.round(H/total*100);
+    const dt = new Date(d+'T00:00:00');
+    const label = dt.getDate() + ' ' + bl[dt.getMonth()];
+    html += `<tr>
+      <td style="font-weight:600">${label}</td>
+      <td><span class="badge bH">${H}</span></td>
+      <td><span class="badge bA">${A}</span></td>
+      <td><span class="badge bI">${I}</span></td>
+      <td><span class="badge bS">${S}</span></td>
+      <td style="font-size:12px;color:${pct>=80?'var(--hijau2)':'var(--merah)'}">${pct}%</td>
+    </tr>`;
   });
 
-  // Sort
-  if(sortVal==='hadir-asc') list.sort((a,b)=>a.pct-b.pct);
-  else if(sortVal==='hadir-desc') list.sort((a,b)=>b.pct-a.pct);
-  else if(sortVal==='alfa-desc') list.sort((a,b)=>b.A-a.A);
-  else if(sortVal==='kelas') list.sort((a,b)=>a.kelas.localeCompare(b.kelas)||a.nama.localeCompare(b.nama));
-  else list.sort((a,b)=>a.nama.localeCompare(b.nama));
-
-  document.getElementById('rs-total-info').textContent = `${list.length} santri, ${totalHari} hari data`;
-
-  // Summary atas
-  const totH=list.reduce((s,x)=>s+x.H,0), totA=list.reduce((s,x)=>s+x.A,0);
-  const totI=list.reduce((s,x)=>s+x.I,0), totS=list.reduce((s,x)=>s+x.S,0);
-  const avgPct = list.length>0 ? Math.round(list.reduce((s,x)=>s+x.pct,0)/list.length) : 0;
-  const terbaik = list.filter(x=>x.totalHari>0).sort((a,b)=>b.pct-a.pct)[0];
-  document.getElementById('rs-top-summary').innerHTML=`
-    <div class="rst-card"><div class="rn" style="color:var(--hijau2)">${totH}</div><div class="rl">Total Hadir</div></div>
-    <div class="rst-card"><div class="rn" style="color:var(--merah)">${totA}</div><div class="rl">Total Alfa</div></div>
-    <div class="rst-card"><div class="rn" style="color:var(--biru)">${totI}</div><div class="rl">Total Izin</div></div>
-    <div class="rst-card"><div class="rn" style="color:${avgPct>=80?'var(--hijau2)':'var(--merah)'}">${avgPct}%</div><div class="rl">Rata Hadir</div></div>`;
-
-  if(!totalHari){
-    document.getElementById('rs-list').innerHTML='<div class="empty">📭 Belum ada data absensi untuk periode ini.<br/>Mulai input absensi terlebih dahulu.</div>';
-    return;
-  }
-
-  let html='';
-  list.forEach(s=>{
-    const ini=s.nama.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
-    const warna=KELAS_COLOR[s.kelas]||'#555';
-    const pctColor=s.pct>=80?'var(--hijau2)':s.pct>=60?'var(--kuning)':'var(--merah)';
-    const isOpen=rsOpenCard===s.id;
-    html+=`<div class="rs-santri-card" id="rsc-${s.id}">
-      <div class="rs-santri-head" onclick="toggleRSCard(${s.id})">
-        <div class="av" style="background:${warna}">${ini}</div>
-        <div class="inf"><div class="nm">${s.nama}</div><div class="kl">${s.kelas}</div></div>
-        <div class="pct-box"><div class="pct-num" style="color:${pctColor}">${s.pct}%</div><div class="pct-lbl">${s.H}/${s.totalHari} hari</div></div>
-        <div class="chevron ${isOpen?'open'}">▾</div>
-      </div>
-      <div class="mini-stats">
-        <div class="ms-item"><div class="mn" style="color:var(--hijau2)">${s.H}</div><div class="ml">Hadir</div></div>
-        <div class="ms-item"><div class="mn" style="color:var(--merah)">${s.A}</div><div class="ml">Alfa</div></div>
-        <div class="ms-item"><div class="mn" style="color:var(--biru)">${s.I}</div><div class="ml">Izin</div></div>
-        <div class="ms-item"><div class="mn" style="color:var(--kuning)">${s.S}</div><div class="ml">Sakit</div></div>
-      </div>
-      <div class="detail-panel ${isOpen?'open'}" id="det-${s.id}">
-        ${buildDetailPanel(s, dates)}
-      </div>
-    </div>`;
-  });
-  document.getElementById('rs-list').innerHTML = html||'<div class="empty">Tidak ada data</div>';
+  html += `</tbody></table></div>`;
+  el.innerHTML = html;
 }
 
-function toggleRSCard(id){
-  rsOpenCard = rsOpenCard===id ? null : id;
-  // toggle chevron & panel tanpa re-render penuh
-  document.querySelectorAll('.rs-santri-card').forEach(card=>{
-    const cid = parseInt(card.id.replace('rsc-',''));
-    const open = cid===rsOpenCard;
-    const chev = card.querySelector('.chevron');
-    const det = card.querySelector('.detail-panel');
-    if(chev) chev.classList.toggle('open',open);
-    if(det) det.classList.toggle('open',open);
-  });
-}
-
-function buildDetailPanel(s, dates){
-  if(!dates.length) return '<div style="font-size:12px;color:var(--text3)">Belum ada data.</div>';
-
-  // Kalender mini
-  let kalHtml='';
-  if(rsMode==='minggu'){
-    // Tampilkan tabel per hari
-    kalHtml=`<h4>Rincian Per Hari</h4><div class="hari-list">`;
-    dates.sort().forEach(d=>{
-      const dt=new Date(d+'T00:00:00');
-      const st=savedData[d]&&savedData[d][s.id]||'—';
-      const stLabel=ST_LABEL[st]||'Belum diisi';
-      const stColor={H:'var(--hijau2)',A:'var(--merah)',I:'var(--biru)',S:'var(--kuning)','—':'var(--text3)'}[st];
-      kalHtml+=`<div class="hari-row">
-        <div><div class="hr-lbl">${HARI_NAMA[dt.getDay()]}</div><div class="hr-tgl">${dt.getDate()+' '+BL[dt.getMonth()]}</div></div>
-        <span class="badge b${st!=='—'?st:''}" style="${st==='—'?'background:var(--bg);color:var(--text3)':''}">${stLabel}</span>
-      </div>`;
-    });
-    kalHtml+='</div>';
-
-  } else if(rsMode==='bulan'){
-    // Kalender bulan penuh
-    const firstDate=new Date(dates[0]+'T00:00:00');
-    const yr=firstDate.getFullYear(), mo=firstDate.getMonth();
-    const firstDay=new Date(yr,mo,1).getDay();
-    const daysInMonth=new Date(yr,mo+1,0).getDate();
-    const startOffset=(firstDay===0?6:firstDay-1); // Senin = 0
-    kalHtml=`<h4>Kalender ${BL_PANJANG[mo]} ${yr}</h4>
-    <div class="kal-grid">
-      <div class="kal-lbl">Sen</div><div class="kal-lbl">Sel</div><div class="kal-lbl">Rab</div>
-      <div class="kal-lbl">Kam</div><div class="kal-lbl">Jum</div><div class="kal-lbl">Sab</div><div class="kal-lbl">Min</div>`;
-    for(let i=0;i<startOffset;i++) kalHtml+=`<div class="kal-day kEmpty"></div>`;
-    for(let day=1;day<=daysInMonth;day++){
-      const dStr=yr+'-'+String(mo+1).padStart(2,'0')+'-'+String(day).padStart(2,'0');
-      const st=savedData[dStr]&&savedData[dStr][s.id];
-      const cls=st?'k'+st:'';
-      kalHtml+=`<div class="kal-day ${cls}" title="${ST_LABEL[st]||''}">${day}</div>`;
-    }
-    kalHtml+=`</div>
-    <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;font-size:11px">
-      <span style="display:flex;align-items:center;gap:3px"><span style="width:10px;height:10px;border-radius:2px;background:var(--hijau-muda);display:inline-block"></span>Hadir</span>
-      <span style="display:flex;align-items:center;gap:3px"><span style="width:10px;height:10px;border-radius:2px;background:var(--merah-muda);display:inline-block"></span>Alfa</span>
-      <span style="display:flex;align-items:center;gap:3px"><span style="width:10px;height:10px;border-radius:2px;background:var(--biru-muda);display:inline-block"></span>Izin</span>
-      <span style="display:flex;align-items:center;gap:3px"><span style="width:10px;height:10px;border-radius:2px;background:var(--kuning-muda);display:inline-block"></span>Sakit</span>
-    </div>`;
-
-  } else if(rsMode==='tahun'){
-    // Grid per bulan — heatmap
-    kalHtml=`<h4>Rekap Per Bulan</h4><div style="overflow-x:auto"><table class="rekap-table">
-      <thead><tr><th>Bulan</th><th>H</th><th>A</th><th>I</th><th>S</th><th>%</th></tr></thead><tbody>`;
-    for(let mo=0;mo<12;mo++){
-      const now2=new Date(); const yr=now2.getFullYear()+rsPeriodeOffset;
-      const prefix=yr+'-'+String(mo+1).padStart(2,'0');
-      const moDates=dates.filter(d=>d.startsWith(prefix));
-      if(!moDates.length){ kalHtml+=`<tr><td style="color:var(--text3)">${BL[mo]}</td><td colspan="5" style="color:var(--text3);font-size:11px">—</td></tr>`; continue; }
-      const H=moDates.filter(d=>savedData[d]&&savedData[d][s.id]==='H').length;
-      const A=moDates.filter(d=>savedData[d]&&savedData[d][s.id]==='A').length;
-      const I=moDates.filter(d=>savedData[d]&&savedData[d][s.id]==='I').length;
-      const Sk=moDates.filter(d=>savedData[d]&&savedData[d][s.id]==='S').length;
-      const pct=Math.round(H/moDates.length*100);
-      kalHtml+=`<tr><td style="font-weight:600">${BL[mo]}</td>
-        <td><span class="badge bH">${H}</span></td><td><span class="badge bA">${A}</span></td>
-        <td><span class="badge bI">${I}</span></td><td><span class="badge bS">${Sk}</span></td>
-        <td style="font-size:12px;font-weight:600;color:${pct>=80?'var(--hijau2)':'var(--merah)'}">${pct}%</td></tr>`;
-    }
-    kalHtml+=`</tbody></table></div>`;
-  }
-
-  // Streak hadir berturut-turut
-  const sortedDates=dates.sort();
-  let maxStreak=0, curStreak=0, lastWasH=false;
-  sortedDates.forEach(d=>{
-    const st=savedData[d]&&savedData[d][s.id];
-    if(st==='H'){ curStreak++; if(curStreak>maxStreak) maxStreak=curStreak; lastWasH=true; }
-    else { curStreak=0; lastWasH=false; }
-  });
-
-  const streakHtml=`<div class="streak-wrap">
-    <span class="streak-chip">🔥 Streak terpanjang: <strong>${maxStreak} hari</strong></span>
-    ${s.A>0?`<span class="streak-chip" style="border-color:var(--merah-muda)">⚠️ Alfa: <strong>${s.A}x</strong></span>`:''}
-    ${s.pct===100?`<span class="streak-chip" style="border-color:var(--hijau-muda);background:var(--hijau-muda)">⭐ Sempurna!</span>`:''}
-  </div>`;
-
-  return kalHtml + streakHtml;
-}
-
-// ================================================================
+// ============================================================
 // EXPORT CSV
-// ================================================================
-function exportCSV(type){
-  if(type==='harian'){
-    const dates = getDatesByMode(rekapMode).sort();
-    if(!dates.length){ showToast('Tidak ada data',''); return; }
-    let csv='\uFEFFTanggal,Hari,Nama,Kelas,Status,Keterangan\n';
-    dates.forEach(d=>{
-      const dt=new Date(d+'T00:00:00');
-      DAFTAR_SANTRI.forEach(s=>{
-        const st=(savedData[d]&&savedData[d][s.id])||'';
-        csv+=`${d},${HARI_NAMA[dt.getDay()]},"${s.nama}","${s.kelas}","${st}","${ST_LABEL[st]||'Belum diisi'}"\n`;
-      });
+// ============================================================
+function exportCSV(){
+  const allDates = Object.keys(savedData).sort();
+  const dates = rekapMode === 'semua' ? allDates : filterTanggalRekap(allDates);
+
+  if(!dates.length){ showToast('Tidak ada data untuk di-export',''); return; }
+
+  let csv = 'Tanggal,Hari,Nama,Kelas,Status,Keterangan\n';
+  const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const stLabel = {H:'Hadir',A:'Alfa',I:'Izin',S:'Sakit'};
+
+  dates.forEach(d => {
+    const dt = new Date(d+'T00:00:00');
+    DAFTAR_SANTRI.forEach(s => {
+      const st = (savedData[d] && savedData[d][s.id]) || '';
+      csv += `${d},${hari[dt.getDay()]},"${s.nama}","${s.kelas}","${st}","${stLabel[st]||'Belum diisi'}"\n`;
     });
-    unduhCSV(csv,'rekap_harian_'+todayStr()+'.csv');
-  } else {
-    // Per santri
-    const dates = getDatesByMode(rsMode, rsPeriodeOffset).sort();
-    const target = rsKelasFilter==='Semua' ? DAFTAR_SANTRI : DAFTAR_SANTRI.filter(s=>s.kelas===rsKelasFilter);
-    if(!dates.length){ showToast('Tidak ada data',''); return; }
-    let csv='\uFEFFNama,Kelas,Total Hari,Hadir,Alfa,Izin,Sakit,% Hadir\n';
-    target.forEach(s=>{
-      const H=dates.filter(d=>savedData[d]&&savedData[d][s.id]==='H').length;
-      const A=dates.filter(d=>savedData[d]&&savedData[d][s.id]==='A').length;
-      const I=dates.filter(d=>savedData[d]&&savedData[d][s.id]==='I').length;
-      const Sk=dates.filter(d=>savedData[d]&&savedData[d][s.id]==='S').length;
-      const pct=dates.length>0?Math.round(H/dates.length*100):0;
-      csv+=`"${s.nama}","${s.kelas}",${dates.length},${H},${A},${I},${Sk},${pct}%\n`;
-    });
-    // Tambah detail per hari per santri di bawahnya
-    csv+='\n\nDETAIL HARIAN\nNama,Kelas,Tanggal,Hari,Status,Keterangan\n';
-    dates.forEach(d=>{
-      const dt=new Date(d+'T00:00:00');
-      target.forEach(s=>{
-        const st=(savedData[d]&&savedData[d][s.id])||'';
-        csv+=`"${s.nama}","${s.kelas}",${d},${HARI_NAMA[dt.getDay()]},"${st}","${ST_LABEL[st]||'Belum diisi'}"\n`;
-      });
-    });
-    unduhCSV(csv,'rekap_per_santri_'+todayStr()+'.csv');
-  }
-  showToast('📥 File CSV berhasil diunduh','ok');
+  });
+
+  const blob = new Blob(['\uFEFF'+csv], {type:'text/csv;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'absensi_subuh_' + new Date().toISOString().split('T')[0] + '.csv';
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(url), 3000);
+  showToast('📥 File CSV berhasil diunduh', 'ok');
 }
 
-function unduhCSV(csv, filename){
-  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a'); a.href=url; a.download=filename; a.click();
-  setTimeout(()=>URL.revokeObjectURL(url),3000);
-}
-
-// ================================================================
+// ============================================================
 // KONEKSI SHEETS
-// ================================================================
-function bukaKoneksi(){ updateStatusKoneksiUI(); document.getElementById('modal-koneksi').classList.add('open'); }
+// ============================================================
+function bukaKoneksi(){
+  updateStatusKoneksiUI();
+  document.getElementById('modal-koneksi').classList.add('open');
+}
 
 function updateStatusKoneksiUI(){
-  const el=document.getElementById('status-koneksi-ui');
+  const el = document.getElementById('status-koneksi-ui');
   if(!el) return;
-  el.innerHTML=scriptURL
-    ?`<div class="status-koneksi connected"><div class="dot on"></div>Terhubung ke Google Sheets</div>`
-    :`<div class="status-koneksi disconnected"><div class="dot off"></div>Belum terhubung ke Google Sheets</div>`;
+  if(scriptURL){
+    el.innerHTML = `<div class="status-koneksi connected"><div class="dot on"></div> Terhubung ke Google Sheets</div>`;
+  } else {
+    el.innerHTML = `<div class="status-koneksi disconnected"><div class="dot off"></div> Belum terhubung ke Google Sheets</div>`;
+  }
 }
 
 function simpanKoneksi(){
-  const url=document.getElementById('script-url').value.trim();
-  const nama=document.getElementById('inp-nama-pesantren').value.trim();
-  if(url&&!url.startsWith('https://script.google.com')){ showToast('❌ URL tidak valid','err'); return; }
-  scriptURL=url;
-  if(nama){ namaPesantren=nama+' — Semua Kelas'; document.getElementById('nama-pesantren').textContent=namaPesantren; localStorage.setItem('nama_pesantren',namaPesantren); }
-  localStorage.setItem('script_url',scriptURL);
+  const url = document.getElementById('script-url').value.trim();
+  const nama = document.getElementById('inp-nama-pesantren').value.trim();
+  if(url && !url.startsWith('https://script.google.com')){
+    showToast('❌ URL tidak valid. Harus dari script.google.com','err');
+    return;
+  }
+  scriptURL = url;
+  if(nama){
+    namaPesantren = nama + ' — Semua Kelas';
+    document.getElementById('nama-pesantren').textContent = namaPesantren;
+    localStorage.setItem('nama_pesantren', namaPesantren);
+  }
+  localStorage.setItem('script_url', scriptURL);
   updateStatusKoneksiUI();
-  showToast(url?'✅ Koneksi tersimpan!':'💾 Disimpan (tanpa Sheets)','ok');
+  showToast(url ? '✅ Koneksi tersimpan!' : '💾 Disimpan (tanpa Sheets)', 'ok');
   if(url) testKoneksi();
 }
 
 async function testKoneksi(){
   if(!scriptURL){ showToast('⚠️ Masukkan URL terlebih dahulu',''); return; }
   showToast('🔄 Menguji koneksi...','');
-  try { await fetch(scriptURL+'?action=ping',{mode:'no-cors'}); showToast('✅ Koneksi berhasil!','ok'); }
-  catch(e){ showToast('❌ Gagal terhubung. Cek URL.','err'); }
+  try {
+    await fetch(scriptURL + '?action=ping', {mode:'no-cors'});
+    showToast('✅ Koneksi berhasil!', 'ok');
+  } catch(e){
+    showToast('❌ Gagal terhubung. Cek URL.', 'err');
+  }
 }
 
-// ================================================================
+// ============================================================
 // TOAST
-// ================================================================
+// ============================================================
 let toastTimer;
-function showToast(msg,type=''){
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.className='toast show'+(type?' '+type:'');
-  clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),3000);
+function showToast(msg, type=''){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (type ? ' '+type : '');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 3000);
 }
 </script>
 </body>
